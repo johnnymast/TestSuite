@@ -1,0 +1,26 @@
+{
+  "name": "johnnymast/testsuite",
+  "description": "description_text",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Johnny Mast",
+      "email": "mastjohnny@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "johnnymast\\Testsuite\\": "src/",
+      "johnnymast\\Testsuite\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpspec/phpspec": "3.2.3",
+    "phpunit/phpunit": "5.7.17",
+    "fzaninotto/faker": "^1.6"
+  }
+}

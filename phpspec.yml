@@ -1,0 +1,4 @@
+suites:
+  testsuite_core:
+      namespace: johnnymast\Testsuite
+      psr4_prefix: johnnymast\Testsuite

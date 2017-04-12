@@ -1,5 +1,5 @@
 
-# PACKAGE NAME [NOT READY]
+# TestSuite [NOT READY]
 
 LORUM IPSUM
 

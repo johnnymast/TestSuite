@@ -5,6 +5,7 @@ namespace spec\johnnymast\Testsuite;
 use johnnymast\Testsuite\Test;
 use johnnymast\Testsuite\TestSuite;
 use PhpSpec\ObjectBehavior;
+use spec\johnnymast\Testsuite\Assets\MockableTest;
 
 class TestSuiteSpec extends ObjectBehavior
 {
@@ -42,21 +43,88 @@ class TestSuiteSpec extends ObjectBehavior
         $this->has($test2)->shouldReturn(true);
     }
 
-    function it_should_run_a_single_test(Test $test)
+    function it_should_run_a_single_test()
     {
-        $test->run()->willReturn(true);
+        $test = new MockableTest();
 
         $this->attach($test);
         $this->run()->shouldReturn(1);
+
+        /**
+         * Dont know if we need this but lets
+         * do it.
+         */
+        $this->detach($test);
     }
 
-    function it_should_run_a_multiple_tests(Test $test1, Test $test2)
+    function it_should_run_a_multiple_tests()
     {
-        $test1->run()->willReturn(true);
-        $test2->run()->willReturn(true);
 
+        $test1 = new MockableTest();
+        $test2 = new MockableTest();
 
         $this->attach([$test1, $test2]);
         $this->run()->shouldReturn(2);
+
+        /**
+         * Don't know if we need this but lets
+         * do it.
+         */
+        $this->detach($test1);
+        $this->detach($test2);
+    }
+
+    function it_should_score_five_with_one_test()
+    {
+        $test = new MockableTest(5);
+        $this->attach($test);
+
+        $this->run();
+        $this->score()->shouldReturn(5);
+
+        /**
+         * Don't know if we need this but lets
+         * do it.
+         */
+        $this->detach($test);
+    }
+
+    function it_should_score_eight_with_both_of_the_tests()
+    {
+        $test1 = new MockableTest(5);
+        $test2 = new MockableTest(3);
+
+        $this->attach([$test1, $test2]);
+
+        $this->run();
+        $this->score()->shouldReturn(8);
+
+        /**
+         * Don't know if we need this but lets
+         * do it.
+         */
+        $this->detach($test1);
+        $this->detach($test2);
+    }
+
+    function it_can_reset_it_self()
+    {
+        $test1 = new MockableTest(5);
+        $test2 = new MockableTest(3);
+
+        $this->attach([$test1, $test2]);
+
+        $this->run();
+        $this->score()->shouldReturn(8);
+
+        /**
+         * Don't know if we need this but lets
+         * do it.
+         */
+        $this->detach($test1);
+        $this->detach($test2);
+
+        $this->reset();
+        $this->score()->shouldReturn(0);
     }
 }

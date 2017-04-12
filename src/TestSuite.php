@@ -31,10 +31,9 @@ class TestSuite
      * Reset the score and rewind
      * the tests storage.
      */
-    private function reset()
+    public function reset()
     {
         $this->score = 0;
-        $this->tests->rewind();
     }
 
     /**
@@ -99,10 +98,15 @@ class TestSuite
     {
         $tests_run = 0;
 
+        /**
+         * Reset the test results
+         */
+        $this->reset();
+
         foreach ($this->tests as $test) {
             if ($test->run()) {
                 $this->score += $test->score();
-                $tests_run++;
+                $tests_run++;;
             }
         }
 

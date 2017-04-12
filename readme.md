@@ -1,7 +1,4 @@
 
-[![Build Status](https://travis-ci.org/johnnymast/ssl_certificate.svg?branch=master)](https://travis-ci.org/johnnymast/ssl_certificate)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/johnnymast/ssl_certificate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/ssl_certificate/?branch=master)
-
 # PACKAGE NAME [NOT READY]
 
 LORUM IPSUM

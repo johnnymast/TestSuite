@@ -1,3 +1,5 @@
+
+bootstrap: spec/Assets/TestClasses.php
 suites:
   testsuite_core:
       namespace: johnnymast\Testsuite

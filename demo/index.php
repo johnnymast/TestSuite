@@ -4,8 +4,12 @@ require '../vendor/autoload.php';
 use johnnymast\Testsuite\Test;
 use johnnymast\Testsuite\TestSuite;
 
-class HttpTestCase implements Test {
+/**
+ * JUST A SPEC DEMO FOR MY SELF
+ */
 
+class HttpTestCase implements Test
+{
     protected $score = 0;
 
     public function minScore()
@@ -27,15 +31,18 @@ class HttpTestCase implements Test {
     {
         echo "RUNNING 1\n";
         $this->score = ($this->maxScore() - $this->minScore());
+
         return true;
     }
 }
 
-class ExtendedHttpTest extends HttpTestCase {
+class ExtendedHttpTest extends HttpTestCase
+{
     public function run()
     {
         echo "RUNNING 2\n";
         $this->score = 5;
+
         return true;
     }
 }
@@ -49,7 +56,6 @@ $extended = new ExtendedHttpTest();
 $suite = new TestSuite();
 $suite->attach([$basic, $extended]);
 
-
 /**
  * Score should be
  *
@@ -59,6 +65,5 @@ $suite->attach([$basic, $extended]);
  * Total suite score 12
  */
 $suite->run();
-
 
 echo "Total suite score: ".$suite->score()."\n";

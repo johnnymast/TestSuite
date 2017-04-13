@@ -91,6 +91,10 @@ class TestSuite
         return $this->score;
     }
 
+    public function avarage() {
+
+    }
+
     /**
      * Run the tests
      */

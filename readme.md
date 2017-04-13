@@ -1,6 +1,7 @@
 
 [![Build Status](https://travis-ci.org/johnnymast/TestSuite.svg?branch=master)](https://travis-ci.org/johnnymast/TestSuite)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/johnnymast/TestSuite/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/TestSuite/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/johnnymast/TestSuite/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/TestSuite/?branch=master)
 
 # TestSuite [NOT READY]
 

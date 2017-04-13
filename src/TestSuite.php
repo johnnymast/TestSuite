@@ -73,7 +73,7 @@ class TestSuite
      * test inside.
      *
      * @param Test $test
-     * @return bool]
+     * @return bool
      */
     public function has(Test $test)
     {

@@ -1,8 +1,8 @@
 <?php
 require '../vendor/autoload.php';
 
-use johnnymast\Testsuite\TestSuite;
 use johnnymast\Testsuite\Test;
+use johnnymast\Testsuite\TestSuite;
 
 class HttpTestCase implements Test {
 

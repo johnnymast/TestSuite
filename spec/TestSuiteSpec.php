@@ -2,9 +2,9 @@
 
 namespace spec\johnnymast\Testsuite;
 
+use PhpSpec\ObjectBehavior;
 use johnnymast\Testsuite\Test;
 use johnnymast\Testsuite\TestSuite;
-use PhpSpec\ObjectBehavior;
 use spec\johnnymast\Testsuite\Assets\MockableTest;
 
 class TestSuiteSpec extends ObjectBehavior

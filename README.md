@@ -4,7 +4,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/?branch=master)
 
-# TestSuite [NOT READY]
+# TestSuite [ALMOST READY]
 
 LORUM IPSUM
 

@@ -1,6 +1,6 @@
 ![cover](https://user-images.githubusercontent.com/121194/107553910-86e08800-6bd5-11eb-9411-500ca30125f0.png)
 
-[![Build Status](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/badges/build.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/build-status/master)
+[![Build Status](https://travis-ci.com/johnnymast/redbox-testsuite.svg?branch=master)](https://travis-ci.com/johnnymast/redbox-testsuite)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/?branch=master)
 

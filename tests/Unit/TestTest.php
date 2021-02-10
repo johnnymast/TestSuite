@@ -92,6 +92,12 @@ class TestTest extends TestCase
         $this->assertEquals(62, $this->testInstance->score->percentage());
     }
     
+    public function test_increments_is_calculated_correctly() {
+        $this->testInstance->score->increment(2);
+        $this->testInstance->score->increment(2);
+        $this->assertEquals(2, $this->testInstance->score->getIncrements());
+    }
+    
     public function test_percentage_should_be_0_without_increments() {
         $this->assertEquals(0, $this->testInstance->score->percentage());
     }

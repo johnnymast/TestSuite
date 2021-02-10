@@ -2,10 +2,10 @@
 
 namespace Redbox\Testsuite\Tests\Unit;
 
+use PHPUnit\Framework\TestCase;
 use Redbox\Testsuite\Test;
 use Redbox\Testsuite\Tests\Assets\MockableTest;
 use Redbox\Testsuite\TestSuite;
-use PHPUnit\Framework\TestCase;
 
 class TestSuiteTest extends TestCase
 {
@@ -66,7 +66,7 @@ class TestSuiteTest extends TestCase
      * for being run.
      *
      */
-    function test_it_can_run_once()
+    public function test_it_can_run_once()
     {
         $test = MockableTest::createWith(1);
         
@@ -82,7 +82,7 @@ class TestSuiteTest extends TestCase
      * Test that the run function will return 2 tests
      * for being run.
      */
-    function test_it_can_multiple_tests()
+    public function test_it_can_multiple_tests()
     {
         $test1 = MockableTest::createWith(1);
         $test2 = MockableTest::createWith(2);
@@ -98,7 +98,7 @@ class TestSuiteTest extends TestCase
     /**
      * Test it can get the score of one test.
      */
-    function test_it_can_calculate_score_of_one_test()
+    public function test_it_can_calculate_score_of_one_test()
     {
         $test = MockableTest::createWith(4);
         
@@ -106,7 +106,7 @@ class TestSuiteTest extends TestCase
         $suite->attach($test);
         $suite->run();
         
-        $actual = $suite->score();
+        $actual = $suite->getScore();
         $expected = 4;
         $this->assertEquals($expected, $actual);
     }
@@ -114,7 +114,7 @@ class TestSuiteTest extends TestCase
     /**
      * Test it can calculate score of multiple running tests
      */
-    function test_it_can_calculate_score_of_multiple_tests()
+    public function test_it_can_calculate_score_of_multiple_tests()
     {
         $test1 = MockableTest::createWith(4);
         $test2 = MockableTest::createWith(5);
@@ -123,8 +123,23 @@ class TestSuiteTest extends TestCase
         $suite->attach([$test1, $test2]);
         $suite->run();
         
-        $actual = $suite->score();
+        $actual = $suite->getScore();
         $expected = 9;
+        $this->assertEquals($expected, $actual);
+    }
+    
+    public function test_getscore_returns_the_correct_value()
+    {
+        $test1 = MockableTest::createWith();
+        $test1->score->increment(4);
+        
+        $suite = new TestSuite();
+        $suite->attach([$test1]);
+        $suite->run();
+    
+        $actual = $suite->getScore();
+        $expected = 4;
+    
         $this->assertEquals($expected, $actual);
     }
 }

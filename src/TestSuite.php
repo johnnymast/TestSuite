@@ -55,24 +55,6 @@ class TestSuite
     }
     
     /**
-     * Count all max scores.
-     *
-     * @return mixed
-     */
-    protected function countMaxScore(): mixed
-    {
-        $maxScore = 0;
-        
-        if (count($this->tests) > 0) {
-            foreach ($this->tests as $test) {
-                $maxScore += $test->maxScore();
-            }
-        }
-        
-        return $maxScore;
-    }
-    
-    /**
      * Attach a Test or an array of
      * Tests to the TestSuite.
      *
@@ -128,27 +110,6 @@ class TestSuite
     public function has(Test $test)
     {
         return $this->tests->contains($test);
-    }
-    
-    /**
-     * Return the score of tests
-     * in this TestSuite.
-     *
-     * @return int
-     */
-    public function score(): int
-    {
-        return $this->score;
-    }
-    
-    /**
-     * Return the avarage score over the whole suite of tests.
-     *
-     * @return mixed
-     */
-    public function average()
-    {
-        return ($this->score / $this->countMaxScore()) * 100;
     }
     
     /**

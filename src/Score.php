@@ -103,7 +103,7 @@ class Score
     /**
      * Return the minimal score.
      *
-     * @return int
+     * @return mixed
      */
     public function minScore()
     {
@@ -113,7 +113,7 @@ class Score
     /**
      * Return the maximal score.
      *
-     * @return int
+     * @return mixed
      */
     public function maxScore()
     {
@@ -123,7 +123,7 @@ class Score
     /**
      * Return the current score.
      *
-     * @return int
+     * @return mixed
      */
     public function getScore()
     {

@@ -1,11 +1,10 @@
 build:
-    tests:
-        override:
-            -
-                command: 'vendor/bin/phpunit --coverage-clover=coverage.clover'
-                coverage:
-                    file: 'coverage.clover'
-                    format: 'clover'
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - command: phpcs-run
+                    - command: php-scrutinizer-run
 
 filter:
     excluded_paths:
@@ -27,11 +26,13 @@ checks:
         fix_line_ending: true
         fix_identation_4spaces: true
         fix_doc_comments: true
+
+
 tools:
     external_code_coverage:
-        timeout: 3800
-        runs: 3
-    php_code_coverage: true
+        timeout: 1800
+        runs: 2
+    php_code_coverage: false
     php_code_sniffer:
         config:
             standard: PSR2
@@ -41,5 +42,5 @@ tools:
         enabled: true
         excluded_dirs: [vendor, tests]
     php_cpd:
-        enabled: true
+        enabled: false
         excluded_dirs: [vendor, tests]

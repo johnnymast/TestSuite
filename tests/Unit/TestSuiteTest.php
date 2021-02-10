@@ -21,7 +21,7 @@ class TestSuiteTest extends TestCase
     }
     
     /**
-     * Test it can attach a single test
+     * Test it can attach a single test.
      */
     public function test_it_can_take_at_test()
     {
@@ -33,7 +33,7 @@ class TestSuiteTest extends TestCase
     }
     
     /**
-     * Test it can attach a multiple tests
+     * Test it can attach a multiple tests.
      */
     public function test_it_can_take_multiple_tests()
     {
@@ -62,7 +62,7 @@ class TestSuiteTest extends TestCase
     }
     
     /**
-     * Test that the run function will return 1 test
+     * Test that the run function will return 1 test.
      * for being run.
      *
      */
@@ -79,7 +79,7 @@ class TestSuiteTest extends TestCase
     }
     
     /**
-     * Test that the run function will return 2 tests
+     * Test that the run function will return 2 tests.
      * for being run.
      */
     public function test_it_can_multiple_tests()
@@ -112,7 +112,7 @@ class TestSuiteTest extends TestCase
     }
     
     /**
-     * Test it can calculate score of multiple running tests
+     * Test it can calculate score of multiple running tests.
      */
     public function test_it_can_calculate_score_of_multiple_tests()
     {
@@ -128,6 +128,10 @@ class TestSuiteTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
     
+    
+    /**
+     * Test getScore returns the correct value.
+     */
     public function test_getscore_returns_the_correct_value()
     {
         $test1 = MockableTest::createWith();
@@ -136,10 +140,10 @@ class TestSuiteTest extends TestCase
         $suite = new TestSuite();
         $suite->attach([$test1]);
         $suite->run();
-    
+        
         $actual = $suite->getScore();
         $expected = 4;
-    
+        
         $this->assertEquals($expected, $actual);
     }
 }

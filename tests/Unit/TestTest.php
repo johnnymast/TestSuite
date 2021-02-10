@@ -3,7 +3,6 @@
 namespace Redbox\Testsuite\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Redbox\Testsuite\Tests\Assets\MockableTest;
 
 class TestTest extends TestCase
 {
@@ -20,12 +19,12 @@ class TestTest extends TestCase
             
             public function maxScore()
             {
-                return 200;
+                return 4;
             }
             
             private function executeTest1()
             {
-                $this->score->increment(4);
+                $this->score->increment(2);
             }
             
             public function run(): bool
@@ -58,7 +57,7 @@ class TestTest extends TestCase
     public function test_run_should_increment_score()
     {
         $this->testInstance->run();
-        $this->assertEquals(4, $this->testInstance->score->getScore());
+        $this->assertEquals(2, $this->testInstance->score->getScore());
     }
     
     public function test_score_knows_the_min_score()
@@ -68,7 +67,7 @@ class TestTest extends TestCase
     
     public function test_score_knows_the_max_score()
     {
-        $this->assertEquals(200, $this->testInstance->score->maxScore());
+        $this->assertEquals(4, $this->testInstance->score->maxScore());
     }
     
     public function test_average_can_be_correctly_calculated()
@@ -85,20 +84,26 @@ class TestTest extends TestCase
         $this->assertFalse($this->testInstance->score->average());
     }
     
-    public function test_percentage_is_calculated_correctly() {
-        $this->testInstance->score->increment(15);
-        $this->testInstance->score->increment(15);
+    public function test_percentage_is_calculated_correctly()
+    {
+        /**
+         * After running the score will be 2 + 1 = 4.
+         * This will calculate percentage of 3 out of 4 (max score).
+         */
+        $this->testInstance->run();
         $this->testInstance->score->increment(1);
-        $this->assertEquals(62, $this->testInstance->score->percentage());
+        $this->assertEquals(75, $this->testInstance->score->percentage());
     }
     
-    public function test_increments_is_calculated_correctly() {
+    public function test_increments_is_calculated_correctly()
+    {
         $this->testInstance->score->increment(2);
         $this->testInstance->score->increment(2);
         $this->assertEquals(2, $this->testInstance->score->getIncrements());
     }
     
-    public function test_percentage_should_be_0_without_increments() {
+    public function test_percentage_should_be_0_without_increments()
+    {
         $this->assertEquals(0, $this->testInstance->score->percentage());
     }
 }

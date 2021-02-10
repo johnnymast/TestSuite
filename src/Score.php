@@ -75,7 +75,7 @@ class Score
      */
     public function percentage()
     {
-        return round(($this->maxScore() / 100) * $this->score, 2);
+        return round(($this->getScore() / $this->maxScore()) * 100, 2);
     }
     
     /**

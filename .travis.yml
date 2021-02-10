@@ -6,6 +6,7 @@ php:
 
 env:
   - COMPOSER_OPTS=""
+  - XDEBUG_MODE=coverage
 
 before_script:
 

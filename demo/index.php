@@ -1,37 +1,32 @@
 <?php
+
 require '../vendor/autoload.php';
 
-use johnnymast\Testsuite\Test;
-use johnnymast\Testsuite\TestSuite;
+use Redbox\Testsuite\Test;
+use Redbox\Testsuite\TestSuite;
 
 /**
  * JUST A SPEC DEMO FOR MY SELF
  */
-
-class HttpTestCase implements Test
+class HttpTestCase extends Test
 {
-    protected $score = 0;
-
+   
     public function minScore()
     {
         return 3;
     }
-
+    
     public function maxScore()
     {
         return 10;
     }
-
-    public function score()
-    {
-        return $this->score;
-    }
-
+    
+    
     public function run()
     {
         echo "RUNNING 1\n";
-        $this->score = ($this->maxScore() - $this->minScore());
-
+//        $this->score = ($this->maxScore() - $this->minScore());
+        
         return true;
     }
 }
@@ -41,8 +36,8 @@ class ExtendedHttpTest extends HttpTestCase
     public function run()
     {
         echo "RUNNING 2\n";
-        $this->score = 5;
-
+   //     $this->score = 5;
+        
         return true;
     }
 }
@@ -55,6 +50,8 @@ $extended = new ExtendedHttpTest();
  */
 $suite = new TestSuite();
 $suite->attach([$basic, $extended]);
+//$suite->attach([HttpTestCase::class, ExtendedHttpTest::class]);
+
 
 /**
  * Score should be

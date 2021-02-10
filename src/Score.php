@@ -1,37 +1,31 @@
 <?php
 
-namespace johnnymast\Testsuite;
+namespace Redbox\Testsuite;
 
 class Score
 {
     /**
      * @var int
      */
-    private $score = 0;
-
+    protected int $score = 0;
+    
     /**
      * The number of increments.
      *
      * @var int
      */
-    private $increments = 0;
-
+    private int $increments = 0;
+    
     /**
-     * The minimal score for
-     * the test.
+     * Score constructor.
      *
-     * @var int
+     * @param  Test  $test
      */
-    private $minscore = 0;
-
-    /**
-     * The maximal score for
-     * the test.
-     *
-     * @var int
-     */
-    private $maxscore = 0;
-
+    public function __construct(Test $test)
+    {
+        $this->test = $test;
+    }
+    
     /**
      * Increment the score by $score amount.
      */
@@ -40,7 +34,7 @@ class Score
         $this->score += $score;
         $this->increments++;
     }
-
+    
     /**
      * Return the percentage the score is
      * compared to the maximal score.
@@ -49,9 +43,9 @@ class Score
      */
     public function percentage()
     {
-        return ($this->score / $this->maxscore) * 100;
+        return round(($this->maxScore() / 100) * $this->score,2);
     }
-
+    
     /**
      * Calculate the average for this
      * score.
@@ -60,9 +54,9 @@ class Score
      */
     public function average()
     {
-        return ($this->increments * $this->score) / $this->increments;
+        return ($this->increments > 0) ? ($this->score / $this->increments) : false;
     }
-
+    
     /**
      * Return the number of increments the
      * score went over.
@@ -73,24 +67,40 @@ class Score
     {
         return $this->increments;
     }
-
+    
     /**
      * Return the minimal score.
      *
      * @return int
      */
-    public function getMinScore()
+    public function minScore()
     {
-        return $this->minscore;
+        return $this->test->minScore();
     }
-
+    
     /**
      * Return the maximal score.
      *
      * @return int
      */
-    public function getMaxScore()
+    public function maxScore()
     {
-        return $this->maxscore;
+        return $this->test->maxScore();
+    }
+    
+    /**
+     * @return int
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+    
+    /**
+     * @param  int  $score
+     */
+    public function setScore($score = 0)
+    {
+        $this->score = $score;
     }
 }

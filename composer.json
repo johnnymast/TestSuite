@@ -10,17 +10,18 @@
     }
   ],
   "require": {
-    "php": ">=5.6.4"
+    "php": ">=7.4"
   },
   "autoload": {
     "psr-4": {
-      "johnnymast\\Testsuite\\": "src/",
-      "johnnymast\\Testsuite\\Tests\\": "tests/"
+      "Redbox\\Testsuite\\": "src/",
+      "Redbox\\Testsuite\\Tests\\": "tests/"
     }
   },
   "require-dev": {
-    "phpspec/phpspec": "3.2.3",
-    "phpunit/phpunit": "5.7.17",
-    "fzaninotto/faker": "^1.6"
+    "phpunit/phpunit": "^9.5",
+    "phpspec/phpspec": "^7.0",
+    "fzaninotto/faker": "^1.9",
+    "phpspec/prophecy": "^1.12"
   }
 }

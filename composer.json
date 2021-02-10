@@ -1,6 +1,6 @@
 {
   "name": "redbox/testsuite",
-  "description": "Redbox-Testsuite allows you to batch process student like tests in a Suite of tests and collect the results from the suite.",
+  "description": "Redbox-Testsuite allows you to batch process student like tests in a Suite of tests and collect the results.",
   "minimum-stability": "stable",
   "license": "MIT",
   "authors": [

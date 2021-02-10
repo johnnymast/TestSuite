@@ -1,4 +1,8 @@
 build:
+    scrutinizer-tests:
+        environment:
+            php:
+                version: 7.24
     nodes:
         analysis:
             tests:

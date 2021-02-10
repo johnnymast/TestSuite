@@ -63,4 +63,4 @@ $suite->attach([$basic, $extended]);
  */
 $suite->run();
 
-echo "Total suite score: ".$suite->score()."\n";
+echo "Total suite score: ".$suite->getScore()."\n";

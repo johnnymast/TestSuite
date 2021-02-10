@@ -53,7 +53,7 @@ class TestSuite
      * Attach a Test or an array of
      * Tests to the TestSuite.
      *
-     * @param $type
+     * @param $info
      */
     public function attach($info)
     {

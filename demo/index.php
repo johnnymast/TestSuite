@@ -25,7 +25,7 @@ class HttpTestCase extends Test
     public function run()
     {
         echo "RUNNING 1\n";
-//        $this->score = ($this->maxScore() - $this->minScore());
+        $this->score->setScore(($this->maxScore() - $this->minScore()));
         
         return true;
     }
@@ -36,7 +36,7 @@ class ExtendedHttpTest extends HttpTestCase
     public function run()
     {
         echo "RUNNING 2\n";
-   //     $this->score = 5;
+        $this->score->setScore(5);
         
         return true;
     }

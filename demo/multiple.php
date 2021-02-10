@@ -1,6 +1,6 @@
 <?php
 
-require '../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 use Redbox\Testsuite\Test;
 use Redbox\Testsuite\TestSuite;

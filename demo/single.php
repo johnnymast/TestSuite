@@ -1,6 +1,6 @@
 <?php
 
-require '../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 use Redbox\Testsuite\Test;
 use Redbox\Testsuite\TestSuite;
@@ -56,7 +56,7 @@ class SingleTest extends Test
     {
         $this->checkAnswer(true);
         $this->checkAnswer(true);
-        $this->checkAnswer(true);
+        $this->checkAnswer(false);
     }
 }
 
@@ -81,4 +81,4 @@ $suite->attach($test);
 $suite->run();
 
 echo "Total suite score: ".$suite->getScore()."\n";
-echo "Percentage complete: ".$test->score->percentage()."\n";
+echo "Percentage complete: ".$test->score->percentage()."%\n";

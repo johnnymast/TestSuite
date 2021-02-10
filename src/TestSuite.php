@@ -79,7 +79,7 @@ class TestSuite
             */
             
             if (is_subclass_of($test, Test::class) === false) {
-                throw new \InvalidArgumentException('Type not implementation Test interface.');
+                throw new \InvalidArgumentException('Test does not extend Test abstract class.');
             }
             
             $this->tests->attach($test);
@@ -90,7 +90,7 @@ class TestSuite
      * Detach a given test from the
      * TestSuite.
      *
-     * @param Test $test The test to detach.
+     * @param  Test  $test  The test to detach.
      *
      * @return void
      */
@@ -103,7 +103,7 @@ class TestSuite
      * Check to see if the TestSuite has a given
      * test inside.
      *
-     * @param Test $test The Test to check for.
+     * @param  Test  $test  The Test to check for.
      *
      * @return bool
      */
@@ -127,10 +127,9 @@ class TestSuite
         $this->reset();
         
         foreach ($this->tests as $test) {
-            if ($test->run()) {
-                $this->score += $test->score->getScore();
-                $tests_run++;
-            }
+            $test->run();
+            $this->score += $test->score->getScore();
+            $tests_run++;
         }
         
         return $tests_run;
@@ -146,3 +145,5 @@ class TestSuite
         return $this->score;
     }
 }
+
+

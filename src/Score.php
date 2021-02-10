@@ -137,7 +137,7 @@ class Score
      *
      * @return void
      */
-    public function setScore($value = 0)
+    public function setScore($value)
     {
         $this->score = $value;
     }

@@ -79,7 +79,7 @@ class TestSuiteSpec extends ObjectBehavior
         $this->attach($test);
         
         $this->run();
-        $this->score()->shouldReturn(5);
+        $this->getScore()->shouldReturn(5);
         
         /**
          * Don't know if we need this but lets
@@ -96,7 +96,7 @@ class TestSuiteSpec extends ObjectBehavior
         $this->attach([$test1, $test2]);
         
         $this->run();
-        $this->score()->shouldReturn(8);
+        $this->getScore()->shouldReturn(8);
         
         /**
          * Don't know if we need this but lets
@@ -114,7 +114,7 @@ class TestSuiteSpec extends ObjectBehavior
         $this->attach([$test1, $test2]);
         
         $this->run();
-        $this->score()->shouldReturn(8);
+        $this->getScore()->shouldReturn(8);
         
         /**
          * Don't know if we need this but lets
@@ -124,7 +124,7 @@ class TestSuiteSpec extends ObjectBehavior
         $this->detach($test2);
         
         $this->reset();
-        $this->score()->shouldReturn(0);
+        $this->getScore()->shouldReturn(0);
     }
     
     

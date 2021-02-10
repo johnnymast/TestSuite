@@ -11,14 +11,14 @@ class MockableTest extends Test
      *
      * @var int
      */
-    public $min = 0;
+    public int $min = 0;
     
     /**
      * Maximal score.
      *
      * @var int
      */
-    public $max = 0;
+    public int $max = 0;
     
     
     /**

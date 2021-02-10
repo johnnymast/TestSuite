@@ -2,11 +2,9 @@
 
 namespace spec\Redbox\Testsuite;
 
-use Assets\EmptyTest;
-use Redbox\Testsuite\Score;
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Redbox\Testsuite\Tests\Assets\MockableTest;
+use PhpSpec\ObjectBehavior;
+use Redbox\Testsuite\Score;
 
 class ScoreSpec extends ObjectBehavior
 {

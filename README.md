@@ -10,7 +10,7 @@ Redbox Testsuite allows you to batch process student like tests in a Suite of te
 
 ## Requirements
 
-The following versions of PHP are supported by this version.
+The following PHP versions are supported.
 
 + PHP 7.4 and above
 
@@ -119,12 +119,12 @@ Percentage complete: 50%
 ## Author
 
 This package is created and maintained by [Johnny Mast](mailto:mastjohnny@gmail.com). For feature requests or suggestions you could consider
-e-mailing me.
+emailing  me.
 
 ## Enjoy
 
 Oh, and if you've come down this far, you might as well [follow me](https://twitter.com/mastjohnny) on Twitter. If you like this software
-please consider giving it a start rating on GitHub.
+please consider giving it a star rating on GitHub.
 
 ## Author
 

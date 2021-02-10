@@ -1,25 +1,53 @@
 <?php
+/**
+ * Score.php
+ *
+ * This file will maintain the Test scores.
+ *
+ * PHP version 7.4
+ *
+ * @category Core
+ * @package  RedboxTestSuite
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/redbox-testsuite
+ * @since    GIT:1.0
+ */
 
 namespace Redbox\Testsuite;
 
+/**
+ * Class Score
+ *
+ * @package Redbox\Testsuite
+ */
 class Score
 {
     /**
-     * @var int
+     * The current score.
+     *
+     * @var mixed
      */
-    protected int $score = 0;
+    protected $score = 0;
     
     /**
-     * The number of increments.
+     * The number of increments this score went over.
      *
      * @var int
      */
     private int $increments = 0;
     
     /**
+     * Reference to the test the score belongs to.
+     *
+     * @var Test
+     */
+    private Test $test;
+    
+    /**
      * Score constructor.
      *
-     * @param  Test  $test
+     * @param Test $test The Test this score belongs to.
      */
     public function __construct(Test $test)
     {
@@ -28,10 +56,14 @@ class Score
     
     /**
      * Increment the score by $score amount.
+     *
+     * @param mixed $value The value to increment the score with (float/double or int).
+     *
+     * @return void
      */
-    public function increment($score)
+    public function increment($value)
     {
-        $this->score += $score;
+        $this->score += $value;
         $this->increments++;
     }
     
@@ -43,7 +75,7 @@ class Score
      */
     public function percentage()
     {
-        return round(($this->maxScore() / 100) * $this->score,2);
+        return round(($this->maxScore() / 100) * $this->score, 2);
     }
     
     /**
@@ -89,6 +121,8 @@ class Score
     }
     
     /**
+     * Return the current score.
+     *
      * @return int
      */
     public function getScore()
@@ -97,10 +131,14 @@ class Score
     }
     
     /**
-     * @param  int  $score
+     * Set to score to a given value.
+     *
+     * @param int $value The value to set as the score.
+     *
+     * @return void
      */
-    public function setScore($score = 0)
+    public function setScore($value = 0)
     {
-        $this->score = $score;
+        $this->score = $value;
     }
 }

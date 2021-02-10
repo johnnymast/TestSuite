@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * TestSuite.php
+ *
+ * This middleware will intercept traffic from visitors to
+ * your website.
+ *
+ * PHP version 7.2
+ *
+ * @category Core
+ * @package  RedboxTestSuite
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/redbox-testsuite
+ * @since    GIT:1.0
+ */
+
 namespace Redbox\Testsuite;
 
 class TestSuite
@@ -10,12 +26,12 @@ class TestSuite
      *
      * @var \SplObjectStorage
      */
-    protected $tests = null;
+    protected ?\SplObjectStorage $tests = null;
     
     /**
      * Test Score counter.
      *
-     * @var int
+     * @var int|double
      */
     protected $score = 0;
     
@@ -30,13 +46,20 @@ class TestSuite
     /**
      * Reset the score and rewind
      * the tests storage.
+     *
+     * @return void
      */
     public function reset()
     {
         $this->score = 0;
     }
     
-    protected function countMaxScore()
+    /**
+     * Count all max scores.
+     *
+     * @return mixed
+     */
+    protected function countMaxScore(): mixed
     {
         $maxScore = 0;
         
@@ -53,7 +76,9 @@ class TestSuite
      * Attach a Test or an array of
      * Tests to the TestSuite.
      *
-     * @param $info
+     * @param $info The Test to attach.
+     *
+     * @return void
      */
     public function attach($info)
     {
@@ -65,9 +90,11 @@ class TestSuite
             $test = $info;
             
             // TODO: Allow array of class names and instantiate here
-//            if (is_string($info) === true && class_exists($info) === true) {
-//                $test = new $info();
-//            }
+            /*
+            if (is_string($info) === true && class_exists($info) === true) {
+                $test = new $info();
+            }
+            */
             
             if (is_subclass_of($test, Test::class) === false) {
                 throw new \InvalidArgumentException('Type not implementation Test interface.');
@@ -81,7 +108,9 @@ class TestSuite
      * Detach a given test from the
      * TestSuite.
      *
-     * @param  Test  $test
+     * @param Test $test The test to detach.
+     *
+     * @return void
      */
     public function detach(Test $test)
     {
@@ -92,7 +121,7 @@ class TestSuite
      * Check to see if the TestSuite has a given
      * test inside.
      *
-     * @param  Test  $test
+     * @param Test $test The Test to check for.
      *
      * @return bool
      */
@@ -112,6 +141,11 @@ class TestSuite
         return $this->score;
     }
     
+    /**
+     * Return the avarage score over the whole suite of tests.
+     *
+     * @return mixed
+     */
     public function average()
     {
         return ($this->score / $this->countMaxScore()) * 100;
@@ -119,8 +153,10 @@ class TestSuite
     
     /**
      * Run the tests
+     *
+     * @return int The number of tests that ran.
      */
-    public function run()
+    public function run(): int
     {
         $tests_run = 0;
         
@@ -132,13 +168,18 @@ class TestSuite
         foreach ($this->tests as $test) {
             if ($test->run()) {
                 $this->score += $test->score->getScore();
-                $tests_run++;;
+                $tests_run++;
             }
         }
         
         return $tests_run;
     }
-
+    
+    /**
+     * Return the test suite score.
+     *
+     * @return mixed
+     */
     public function getScore()
     {
         return $this->score;

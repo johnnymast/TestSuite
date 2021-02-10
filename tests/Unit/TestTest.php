@@ -13,12 +13,12 @@ class TestTest extends TestCase
     {
         $this->testInstance = new class extends \Redbox\Testsuite\Test {
             
-            public function minScore(): int
+            public function minScore(): mixed
             {
                 return 0;
             }
             
-            public function maxScore(): int
+            public function maxScore(): mixed
             {
                 return 200;
             }

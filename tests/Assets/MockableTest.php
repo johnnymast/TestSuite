@@ -2,7 +2,6 @@
 
 namespace Redbox\Testsuite\Tests\Assets;
 
-use Redbox\Testsuite\Score;
 use Redbox\Testsuite\Test;
 
 class MockableTest extends Test
@@ -23,9 +22,11 @@ class MockableTest extends Test
     
     
     /**
-     * @param  int  $score
-     * @param  int  $min
-     * @param  int  $max
+     * Create an instance with a score min value and max value.
+     *
+     * @param  int  $score  The score to initialize the mock with.
+     * @param  int  $min    The minimal score to initialize the moch with (optional)
+     * @param  int  $max    The maximal score to initialize the moch with (optional)
      *
      * @return MockableTest
      */
@@ -41,6 +42,8 @@ class MockableTest extends Test
     }
     
     /**
+     * Create an instance of the MockableTest.
+     *
      * @return MockableTest
      */
     public static function create(): MockableTest
@@ -52,7 +55,7 @@ class MockableTest extends Test
      * Return the minimal amount of
      * points the test can score.
      *
-     * @return int
+     * @return mixed
      */
     public function minScore()
     {
@@ -63,7 +66,7 @@ class MockableTest extends Test
      * Return the maximum amount of
      * points the test can score.
      *
-     * @return int
+     * @return mixed
      */
     public function maxScore()
     {

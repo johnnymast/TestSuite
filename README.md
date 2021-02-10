@@ -4,9 +4,9 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/johnnymast/redbox-testsuite/?branch=master)
 
-# TestSuite [ALMOST READY]
+# Redbox Testsuite
 
-LORUM IPSUM
+Redbox Testsuite allows you to batch process student like tests in a Suite of tests and collect the results from the suite.
 
 ## Requirements
 

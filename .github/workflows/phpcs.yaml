@@ -1,4 +1,4 @@
-name: Phpcs
+name: php_codesniffer
 on: [push]
 
 jobs:

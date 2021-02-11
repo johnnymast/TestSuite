@@ -71,9 +71,9 @@ class TestSuite
         } else {
             $test = $info;
             
-            //            if (is_string($info) === true && class_exists($info) === true) {
-            //                $test = new $info();
-            //            }
+            if (is_string($info) === true && class_exists($info) === true) {
+                $test = new $info();
+            }
             
             if (is_subclass_of($test, Test::class) === false) {
                 throw new \InvalidArgumentException('Test does not extend Test abstract class.');
@@ -140,5 +140,15 @@ class TestSuite
     public function getScore()
     {
         return $this->score;
+    }
+    
+    /**
+     * Return all tests.
+     *
+     * @return \SplObjectStorage
+     */
+    public function getTests()
+    {
+        return $this->tests;
     }
 }

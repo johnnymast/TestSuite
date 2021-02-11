@@ -53,7 +53,7 @@ class ScoreSpec extends ObjectBehavior
      *
      * @return void
      */
-    private function it_should_be_able_to_set_and_get_the_score()
+    function it_should_be_able_to_set_and_get_the_score()
     {
         $this->setScore(5);
         $this->getScore()->shouldBe(5);
@@ -64,7 +64,7 @@ class ScoreSpec extends ObjectBehavior
      *
      * @return void
      */
-    private function it_the_default_value_for_scores_is_0()
+    function it_the_default_value_for_scores_is_0()
     {
         $this->getScore()->shouldBe(0);
     }
@@ -74,7 +74,7 @@ class ScoreSpec extends ObjectBehavior
      *
      * @return void
      */
-    private function it_can_increment_scores()
+    function it_can_increment_scores()
     {
         $this->increment(1);
         $this->getScore()->shouldBe(1);
@@ -85,7 +85,7 @@ class ScoreSpec extends ObjectBehavior
      *
      * @return void
      */
-    private function it_can_calculate_the_average_of_total_7()
+    function it_can_calculate_the_average_of_total_7()
     {
         $this->increment(2);
         $this->increment(2);
@@ -98,7 +98,7 @@ class ScoreSpec extends ObjectBehavior
      *
      * @return void
      */
-    private function it_can_calculate_the_average_of_total_9()
+    function it_can_calculate_the_average_of_total_9()
     {
         $this->increment(3);
         $this->increment(3);
@@ -111,7 +111,7 @@ class ScoreSpec extends ObjectBehavior
      *
      * @return void
      */
-    private function it_can_calculate_the_average_of_total_12()
+    function it_can_calculate_the_average_of_total_12()
     {
         $this->increment(3);
         $this->increment(3);
@@ -125,7 +125,7 @@ class ScoreSpec extends ObjectBehavior
      *
      * @return void
      */
-    private function it_can_calculate_a_score_percentage()
+    function it_can_calculate_a_score_percentage()
     {
         $this->increment(11);
         $this->increment(11);

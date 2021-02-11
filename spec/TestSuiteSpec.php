@@ -32,6 +32,25 @@ use Redbox\Testsuite\TestSuite;
 class TestSuiteSpec extends ObjectBehavior
 {
     /**
+     * Provides shouldBeInstanceOfClassByName() and shouldNotBeInstanceOfClassByName().
+     *
+     * @return \Closure[]
+     */
+    public function getMatchers(): array
+    {
+        return [
+          'haveInstancesOfObjectWithType' => function ($subject, $type, $num = 0, $counter = 0) {
+            foreach ($subject as $test) {
+                if ($test instanceof $type) {
+                    $counter++;
+                }
+            }
+              return ($counter == $num);
+          }
+        ];
+    }
+    
+    /**
      * Test the TestSuite class is initializable.
      *
      * @return void
@@ -51,7 +70,6 @@ class TestSuiteSpec extends ObjectBehavior
     {
         $this->shouldThrow(\InvalidArgumentException::class)->during('attach', ['invalid']);
     }
-    
     
     /**
      * Test that attaching a Test works.
@@ -84,6 +102,23 @@ class TestSuiteSpec extends ObjectBehavior
     }
     
     /**
+     * Test getTests returns all tests.
+     *
+     * @param CollaboratorAlias $test This is a fake instance of the Test Abstract.
+     *
+     * @return void
+     */
+    function it_should_return_all_tests_with_gettests(CollaboratorAlias $test)
+    {
+        $test->beADoubleOf(Test::class);
+        
+        $this->attach($test);
+        
+        $this->getTests()->shouldHaveCount(1);
+        $this->getTests()->shouldContain($test);
+    }
+    
+    /**
      * Test that multiple classes can be attacked by passing the attach function an array with tests.
      *
      * @param CollaboratorAlias $test1 This is a fake instance of the Test Abstract.
@@ -100,6 +135,38 @@ class TestSuiteSpec extends ObjectBehavior
         
         $this->has($test1)->shouldReturn(true);
         $this->has($test2)->shouldReturn(true);
+    }
+    
+    /**
+     * Test one test can be attached by just using a classname. This
+     * test will automatically be loaded by the test suite.
+     *
+     * @return void
+     */
+    function it_can_attach_one_test_by_class_name()
+    {
+        $this->getTests()->shouldHaveCount(0);
+        $this->attach([MockableTest::class]);
+        
+        $this->getTests()->shouldHaveCount(1);
+        
+        $this->getTests()->shouldHaveInstancesOfObjectWithType(MockableTest::class, 1);
+    }
+    
+    /**
+     * Test one test can be attached by just using a classname. This
+     * test will automatically be loaded by the test suite.
+     *
+     * @return void
+     */
+    function it_can_attach_multiple_tests_by_class_name()
+    {
+        $this->getTests()->shouldHaveCount(0);
+        $this->attach([MockableTest::class, MockableTest::class]);
+        
+        $this->getTests()->shouldHaveCount(2);
+        
+        $this->getTests()->shouldHaveInstancesOfObjectWithType(MockableTest::class, 2);
     }
     
     /**

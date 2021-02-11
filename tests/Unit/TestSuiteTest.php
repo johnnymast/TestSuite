@@ -90,6 +90,21 @@ class TestSuiteTest extends TestCase
     }
     
     /**
+     * Test getTests returns all tests.
+     *
+     * @return void
+     */
+    function test_it_should_return_all_tests_with_gettests()
+    {
+        $test = $this->createMock(Test::class);
+        
+        $suite = new TestSuite();
+        $suite->attach($test);
+        
+        $this->assertContains($test, $suite->getTests());
+    }
+    
+    /**
      * Test that the run function will return 1 test.
      * for being run.
      *
@@ -127,6 +142,62 @@ class TestSuiteTest extends TestCase
     }
     
     /**
+     * Test one test can be attached by just using a classname. This
+     * test will automatically be loaded by the test suite.
+     *
+     * @return void
+     */
+    function test_attach_one_test_by_class_name()
+    {
+        $suite = new TestSuite();
+        
+        $this->assertCount(0, $suite->getTests());
+        $suite->attach(MockableTest::class);
+        
+        $this->assertCount(1, $suite->getTests());
+        
+        $expected = 1;
+        $counter = 0;
+        $ofType = MockableTest::class;
+        
+        foreach ($suite->getTests() as $test) {
+            if ($test instanceof $ofType) {
+                $counter++;
+            }
+        }
+        
+        $this->assertEquals($expected, $counter);
+    }
+    
+    /**
+     * Test one test can be attached by just using a classname. This
+     * test will automatically be loaded by the test suite.
+     *
+     * @return void
+     */
+    function test_attach_multiple_tests_by_class_name()
+    {
+        $suite = new TestSuite();
+        
+        $this->assertCount(0, $suite->getTests());
+        $suite->attach([MockableTest::class, MockableTest::class]);
+        
+        $this->assertCount(2, $suite->getTests());
+        
+        $expected = 2;
+        $counter = 0;
+        $ofType = MockableTest::class;
+        
+        foreach ($suite->getTests() as $test) {
+            if ($test instanceof $ofType) {
+                $counter++;
+            }
+        }
+        
+        $this->assertEquals($expected, $counter);
+    }
+    
+    /**
      * Test it can get the score of one test.
      *
      * @return void
@@ -141,6 +212,8 @@ class TestSuiteTest extends TestCase
         
         $actual = $suite->getScore();
         $expected = 4;
+        
+        
         $this->assertEquals($expected, $actual);
     }
     

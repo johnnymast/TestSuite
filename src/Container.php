@@ -1,0 +1,101 @@
+<?php
+
+/**
+ * Container.php
+ *
+ * This is the internal storage container for test suites.
+ *
+ * PHP version 7.4
+ *
+ * @category Core
+ * @package  RedboxTestSuite
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/redbox-testsuite
+ * @since    GIT:1.0
+ */
+
+namespace Redbox\Testsuite;
+
+use Redbox\Testsuite\Interfaces\ContainerInterface;
+
+/**
+ * Class Container
+ *
+ * @package Redbox\Testsuite
+ */
+class Container implements ContainerInterface
+{
+    /**
+     * Internal storage for the container.
+     *
+     * @var array
+     */
+    protected $storage = [];
+    
+    /**
+     * Destroy the active container.
+     *
+     * @return void
+     */
+    public function destroy()
+    {
+        // TODO: Implement destroy() method.
+    }
+    
+    /**
+     * Check to see if any information has been stored in the
+     * container using the provided key.
+     *
+     * @param string $key The identification key.
+     *
+     * @return bool
+     */
+    public function has(string $key): bool
+    {
+        return isset($this->storage[$key]);
+    }
+    
+    /**
+     * Return a value from the container with a key.
+     *
+     * @param string $key The identification key.
+     *
+     * @return mixed
+     */
+    public function get(string $key)
+    {
+        if ($this->has($key)) {
+            return $this->storage[$key];
+        }
+    }
+    
+    /**
+     * Store a value in the container indicated by this key.
+     *
+     * @param string $key   The identification key.
+     * @param mixed  $value The value for the $key.
+     *
+     * @return void
+     */
+    public function set(string $key, $value)
+    {
+        if (!is_null($key)) {
+            $this->storage[$key] = $value;
+        }
+    }
+    
+    /**
+     * Forget a value in the container by this key.
+     *
+     * @param string $key The key to forget.
+     *
+     * @return void
+     */
+    public function forget(string $key)
+    {
+        if ($this->has($key)) {
+            unset($this->storage[$key]);
+        }
+    }
+}

@@ -1,9 +1,29 @@
 <?php
 
+/**
+ * MockableTest.php
+ *
+ * This file creates a fake mocked test instance that i can use for testing.
+ *
+ * PHP version 7.4
+ *
+ * @category Core
+ * @package  RedboxTestSuite
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/redbox-testsuite
+ * @since    GIT:1.0
+ */
+
 namespace Redbox\Testsuite\Tests\Assets;
 
 use Redbox\Testsuite\Test;
 
+/**
+ * Class MockableTest
+ *
+ * @package Redbox\Testsuite\Tests\Assets
+ */
 class MockableTest extends Test
 {
     /**
@@ -20,13 +40,12 @@ class MockableTest extends Test
      */
     public int $max = 0;
     
-    
     /**
      * Create an instance with a score min value and max value.
      *
-     * @param  int  $score  The score to initialize the mock with.
-     * @param  int  $min    The minimal score to initialize the moch with (optional)
-     * @param  int  $max    The maximal score to initialize the moch with (optional)
+     * @param int $score The score to initialize the mock with.
+     * @param int $min   The minimal score to initialize the moch with (optional)
+     * @param int $max   The maximal score to initialize the moch with (optional)
      *
      * @return MockableTest
      */

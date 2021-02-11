@@ -52,6 +52,11 @@ class Score
     public function __construct(Test $test)
     {
         $this->test = $test;
+        
+        /**
+         * Set the default score to the minimal score.
+         */
+        $this->score = $this->minScore();
     }
     
     /**

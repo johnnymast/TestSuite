@@ -1,5 +1,20 @@
 <?php
 
+/**
+ * TestSuiteTest.php
+ *
+ * This test Suite tests all TestSuite (class) functions.
+ *
+ * PHP version 7.4
+ *
+ * @category Core
+ * @package  RedboxTestSuite
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/redbox-testsuite
+ * @since    GIT:1.0
+ */
+
 namespace Redbox\Testsuite\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
@@ -7,11 +22,18 @@ use Redbox\Testsuite\Test;
 use Redbox\Testsuite\Tests\Assets\MockableTest;
 use Redbox\Testsuite\TestSuite;
 
+/**
+ * Class TestSuiteTest
+ *
+ * @package Redbox\Testsuite\Tests\Unit
+ */
 class TestSuiteTest extends TestCase
 {
     /**
      * Test that an \InvalidArgumentException will be
      * thrown if the test not has type Test.
+     *
+     * @return void
      */
     public function test_it_only_takes_tests()
     {
@@ -22,6 +44,8 @@ class TestSuiteTest extends TestCase
     
     /**
      * Test it can attach a single test.
+     *
+     * @return void
      */
     public function test_it_can_take_at_test()
     {
@@ -34,6 +58,8 @@ class TestSuiteTest extends TestCase
     
     /**
      * Test it can attach a multiple tests.
+     *
+     * @return void
      */
     public function test_it_can_take_multiple_tests()
     {
@@ -48,6 +74,8 @@ class TestSuiteTest extends TestCase
     
     /**
      * Test it can detach a test.
+     *
+     * @return void
      */
     public function test_it_can_detach_a_test()
     {
@@ -65,6 +93,7 @@ class TestSuiteTest extends TestCase
      * Test that the run function will return 1 test.
      * for being run.
      *
+     * @return void
      */
     public function test_it_can_run_once()
     {
@@ -81,6 +110,8 @@ class TestSuiteTest extends TestCase
     /**
      * Test that the run function will return 2 tests.
      * for being run.
+     *
+     * @return void
      */
     public function test_it_can_multiple_tests()
     {
@@ -97,6 +128,8 @@ class TestSuiteTest extends TestCase
     
     /**
      * Test it can get the score of one test.
+     *
+     * @return void
      */
     public function test_it_can_calculate_score_of_one_test()
     {
@@ -113,6 +146,8 @@ class TestSuiteTest extends TestCase
     
     /**
      * Test it can calculate score of multiple running tests.
+     *
+     * @return void
      */
     public function test_it_can_calculate_score_of_multiple_tests()
     {
@@ -128,9 +163,10 @@ class TestSuiteTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
     
-    
     /**
      * Test getScore returns the correct value.
+     *
+     * @return void
      */
     public function test_getscore_returns_the_correct_value()
     {

@@ -71,12 +71,9 @@ class TestSuite
         } else {
             $test = $info;
             
-            // TODO: Allow array of class names and instantiate here
-            /*
-            if (is_string($info) === true && class_exists($info) === true) {
-                $test = new $info();
-            }
-            */
+            //            if (is_string($info) === true && class_exists($info) === true) {
+            //                $test = new $info();
+            //            }
             
             if (is_subclass_of($test, Test::class) === false) {
                 throw new \InvalidArgumentException('Test does not extend Test abstract class.');
@@ -90,7 +87,7 @@ class TestSuite
      * Detach a given test from the
      * TestSuite.
      *
-     * @param  Test  $test  The test to detach.
+     * @param Test $test The test to detach.
      *
      * @return void
      */
@@ -103,7 +100,7 @@ class TestSuite
      * Check to see if the TestSuite has a given
      * test inside.
      *
-     * @param  Test  $test  The Test to check for.
+     * @param Test $test The Test to check for.
      *
      * @return bool
      */
@@ -145,5 +142,3 @@ class TestSuite
         return $this->score;
     }
 }
-
-

@@ -38,16 +38,6 @@ class ContainerSpec extends ObjectBehavior
     }
     
     /**
-     * Check for the existence of the destroy function.
-     *
-     * @return void
-     */
-    function it_should_have_a_callable_destroy_function()
-    {
-        $this->destroy();
-    }
-    
-    /**
      * Check if there is a function called has.
      *
      * @return void
@@ -67,6 +57,16 @@ class ContainerSpec extends ObjectBehavior
     {
         $this->set('__GOODBYE__', 'world');
         $this->get('__GOODBYE__');
+    }
+    
+    /**
+     * Test that get should return false if a key does not exist.
+     *
+     * @return void
+     */
+    function it_should_return_false_on_get_if_a_given_key_does_not_exist()
+    {
+        $this->get('__NON_EXISTING_KEY')->shouldReturn(false);
     }
     
     /**

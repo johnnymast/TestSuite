@@ -27,13 +27,6 @@ interface ContainerInterface
 {
     
     /**
-     * Destroy the active container.
-     *
-     * @return void
-     */
-    public function destroy();
-    
-    /**
      * Check to see if any information has been stored in the
      * container using the provided key.
      *

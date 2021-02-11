@@ -18,6 +18,8 @@
 
 namespace Redbox\Testsuite;
 
+use Redbox\Testsuite\Interfaces\ContainerInterface;
+
 class TestSuite
 {
     /**

@@ -61,6 +61,16 @@ class ContainerTest extends TestCase
     }
     
     /**
+     * Test that get should return false if a key does not exist.
+     *
+     * @return void
+     */
+    public function test_get_should_return_false_for_nonexisting_key()
+    {
+        $this->assertFalse($this->container->get('__NON_EXISTING_KEY'));
+    }
+    
+    /**
      * Test that the has function works correctly.
      *
      * @return void
@@ -85,18 +95,5 @@ class ContainerTest extends TestCase
         $this->container->forget('__VAL__');
         
         $this->assertFalse($this->container->has('__VAL__'));
-    }
-    
-    /**
-     * Test the destroy function exists.
-     *
-     * @return void
-     */
-    public function test_destroy_function_should_exist()
-    {
-        $this->assertTrue(
-            method_exists($this->container, 'destroy'),
-            'Class does not have method destroy'
-        );
     }
 }

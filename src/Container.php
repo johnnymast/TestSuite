@@ -34,16 +34,6 @@ class Container implements ContainerInterface
     protected $storage = [];
     
     /**
-     * Destroy the active container.
-     *
-     * @return void
-     */
-    public function destroy()
-    {
-        // TODO: Implement destroy() method.
-    }
-    
-    /**
      * Check to see if any information has been stored in the
      * container using the provided key.
      *
@@ -61,13 +51,15 @@ class Container implements ContainerInterface
      *
      * @param string $key The identification key.
      *
-     * @return mixed
+     * @return mixed|bool
      */
     public function get(string $key)
     {
         if ($this->has($key)) {
             return $this->storage[$key];
         }
+        
+        return false;
     }
     
     /**

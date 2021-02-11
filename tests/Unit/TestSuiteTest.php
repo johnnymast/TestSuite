@@ -18,7 +18,9 @@
 namespace Redbox\Testsuite\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\Test;
+use Redbox\Testsuite\Tests\Assets\MockableContainer;
 use Redbox\Testsuite\Tests\Assets\MockableTest;
 use Redbox\Testsuite\TestSuite;
 
@@ -29,6 +31,37 @@ use Redbox\Testsuite\TestSuite;
  */
 class TestSuiteTest extends TestCase
 {
+    
+    /**
+     * Check if there is a default container present upon initialization.
+     *
+     * @return void
+     */
+    function test_it_should_have_a_default_container()
+    {
+        $suite = new TestSuite();
+        $container = $suite->getContainer();
+        
+        $this->assertInstanceOf(ContainerInterface::class, $container);
+    }
+    
+    /**
+     * Test if setting and then retreiving a container via getContainer
+     * returns the same object.
+     *
+     * @return void
+     */
+    function test_it_should_be_able_of_setting_custom_container()
+    {
+        $container = new MockableContainer();
+        $suite = new TestSuite();
+        
+        $suite->setContainer($container);
+        
+        
+        $this->assertInstanceOf(MockableContainer::class, $container);
+    }
+    
     /**
      * Test that an \InvalidArgumentException will be
      * thrown if the test not has type Test.

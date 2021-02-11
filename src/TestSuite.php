@@ -30,6 +30,8 @@ class TestSuite
      */
     protected ?\SplObjectStorage $tests = null;
     
+    protected ?ContainerInterface $container = null;
+    
     /**
      * Test Score counter.
      *
@@ -43,6 +45,30 @@ class TestSuite
     public function __construct()
     {
         $this->tests = new \SplObjectStorage;
+        
+        $this->setContainer(new Container());
+    }
+    
+    /**
+     * Set he storage container for the test suite.
+     *
+     * @param ContainerInterface $container The storage container for the test suite.
+     *
+     * @return void
+     */
+    public function setContainer(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+    
+    /**
+     * Return the storage container.
+     *
+     * @return ContainerInterface
+     */
+    public function getContainer(): ContainerInterface
+    {
+        return $this->container;
     }
     
     /**

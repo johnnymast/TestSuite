@@ -19,7 +19,9 @@ namespace spec\Redbox\Testsuite;
 
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Wrapper\Collaborator as CollaboratorAlias;
+use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\Test;
+use Redbox\Testsuite\Tests\Assets\MockableContainer;
 use Redbox\Testsuite\Tests\Assets\MockableTest;
 use Redbox\Testsuite\TestSuite;
 
@@ -32,7 +34,11 @@ use Redbox\Testsuite\TestSuite;
 class TestSuiteSpec extends ObjectBehavior
 {
     /**
-     * Provides shouldBeInstanceOfClassByName() and shouldNotBeInstanceOfClassByName().
+     * Provides
+     *  - shouldBeInstanceOfClassByName()
+     *  - shouldNotBeInstanceOfClassByName()
+     *  - shouldReturnImplementationOf()
+     *  - shouldNotReturnImplementationOf()
      *
      * @return \Closure[]
      */
@@ -46,6 +52,9 @@ class TestSuiteSpec extends ObjectBehavior
                 }
             }
               return ($counter == $num);
+          },
+          'returnImplementationOf' => function ($subject, $interface) {
+              return ($subject instanceof $interface);
           }
         ];
     }
@@ -58,6 +67,31 @@ class TestSuiteSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType(TestSuite::class);
+    }
+    
+    /**
+     * Check if there is a default container present upon initialization.
+     *
+     * @return void
+     */
+    function it_should_have_a_default_container()
+    {
+        $this->getContainer()->shouldReturnImplementationOf(ContainerInterface::class);
+    }
+    
+    /**
+     * Test if setting and then retrieving a container via getContainer
+     * returns the same object.
+     *
+     * @return void
+     */
+    function it_should_be_abled_of_setting_custom_container()
+    {
+        $container = new MockableContainer();
+        
+        $this->setContainer($container);
+        
+        $this->getContainer()->shouldBeAnInstanceOf(MockableContainer::class);
     }
     
     /**

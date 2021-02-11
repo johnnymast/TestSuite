@@ -1,10 +1,9 @@
 <?php
 
 /**
- * ContainerInterface.php
+ * MockableContainer.php
  *
- * Create a interface for containers. This will voice compatibility
- * with the core of Redbox TestSuite.
+ * An empty version of a container.
  *
  * PHP version 7.4
  *
@@ -16,16 +15,17 @@
  * @since    GIT:1.0
  */
 
-namespace Redbox\Testsuite\Interfaces;
+namespace Redbox\Testsuite\Tests\Assets;
+
+use Redbox\Testsuite\Interfaces\ContainerInterface;
 
 /**
- * Interface ContainerInterface
+ * Class MockableContainer
  *
- * @package Redbox\Testsuite\Interfaces
+ * @package Redbox\Testsuite\Tests\Assets
  */
-interface ContainerInterface
+class MockableContainer implements ContainerInterface
 {
-    
     /**
      * Check to see if any information has been stored in the
      * container using the provided key.
@@ -34,7 +34,10 @@ interface ContainerInterface
      *
      * @return bool
      */
-    public function has(string $key): bool;
+    public function has(string $key): bool
+    {
+        // TODO: Implement has() method.
+    }
     
     /**
      * Return a value from the container with a key.
@@ -43,7 +46,10 @@ interface ContainerInterface
      *
      * @return mixed|bool
      */
-    public function get(string $key);
+    public function get(string $key)
+    {
+        // TODO: Implement get() method.
+    }
     
     /**
      * Store a value in the container indicated by this key.
@@ -53,7 +59,10 @@ interface ContainerInterface
      *
      * @return void
      */
-    public function set(string $key, $value);
+    public function set(string $key, $value)
+    {
+        // TODO: Implement set() method.
+    }
     
     /**
      * Forget a value in the container by this key.
@@ -62,5 +71,8 @@ interface ContainerInterface
      *
      * @return void
      */
-    public function forget(string $key);
+    public function forget(string $key)
+    {
+        // TODO: Implement forget() method.
+    }
 }

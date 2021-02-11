@@ -17,6 +17,8 @@
 
 namespace Redbox\Testsuite\Tests\Assets;
 
+use Redbox\Testsuite\Container;
+use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\Test;
 
 /**
@@ -67,7 +69,7 @@ class MockableTest extends Test
      */
     public static function create(): MockableTest
     {
-        return new MockableTest();
+        return new static();
     }
     
     /**
@@ -95,9 +97,11 @@ class MockableTest extends Test
     /**
      * Run the test.
      *
+     * @param ContainerInterface $container The storage container for the TestSuite.
+     *                                        
      * @return bool
      */
-    public function run()
+    public function run(ContainerInterface $container)
     {
         return true;
     }

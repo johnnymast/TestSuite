@@ -16,6 +16,8 @@
 
 namespace Redbox\Testsuite;
 
+use Redbox\Testsuite\Interfaces\ContainerInterface;
+
 /**
  * Class Test
  *
@@ -62,7 +64,9 @@ abstract class Test
      * Tests must implement this method to start
      * running their tests.
      *
+     * @param ContainerInterface $container The storage container for the TestSuite.
+     *
      * @return void
      */
-    abstract public function run();
+    abstract public function run(ContainerInterface $container);
 }

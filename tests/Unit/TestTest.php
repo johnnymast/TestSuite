@@ -18,6 +18,8 @@
 namespace Redbox\Testsuite\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Redbox\Testsuite\Container;
+use Redbox\Testsuite\Interfaces\ContainerInterface;
 
 /**
  * Class TestTest
@@ -34,6 +36,13 @@ class TestTest extends TestCase
     protected $testInstance;
     
     /**
+     * A test container.
+     *
+     * @var \Redbox\Testsuite\Container
+     */
+    protected $testContainer;
+    
+    /**
      * This function will be executed before all test functions.
      * This means a fresh test instance for every test in this suite.
      *
@@ -42,7 +51,7 @@ class TestTest extends TestCase
     protected function setUp(): void
     {
         $this->testInstance = new class extends \Redbox\Testsuite\Test {
-    
+            
             /**
              * Define the min score for this test.
              *
@@ -52,7 +61,7 @@ class TestTest extends TestCase
             {
                 return 0;
             }
-    
+            
             /**
              * Define the max score for this test.
              *
@@ -76,14 +85,18 @@ class TestTest extends TestCase
             /**
              * Run the test.
              *
+             * @param ContainerInterface $container The storage container for the TestSuite.
+             *
              * @return bool
              */
-            public function run(): bool
+            public function run(ContainerInterface  $container): bool
             {
                 $this->executeTest1();
                 return true;
             }
         };
+    
+        $this->testContainer = new Container();
     }
     
     /**
@@ -127,7 +140,7 @@ class TestTest extends TestCase
      */
     public function test_run_should_increment_score()
     {
-        $this->testInstance->run();
+        $this->testInstance->run($this->testContainer);
         $this->assertEquals(2, $this->testInstance->score->getScore());
     }
     
@@ -186,7 +199,7 @@ class TestTest extends TestCase
          * After running the score will be 2 + 1 = 4.
          * This will calculate percentage of 3 out of 4 (max score).
          */
-        $this->testInstance->run();
+        $this->testInstance->run($this->testContainer);
         $this->testInstance->score->increment(1);
         $this->assertEquals(75, $this->testInstance->score->percentage());
     }

@@ -19,6 +19,7 @@ namespace spec\Redbox\Testsuite;
 
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Wrapper\Collaborator as CollaboratorAlias;
+use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\Test;
 use Redbox\Testsuite\Tests\Assets\MockableContainer;

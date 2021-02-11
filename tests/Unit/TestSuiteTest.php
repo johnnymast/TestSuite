@@ -288,4 +288,45 @@ class TestSuiteTest extends TestCase
         
         $this->assertEquals($expected, $actual);
     }
+    
+    /**
+     * Test if the Container passes trough values to the test.
+     *
+     * @return voic
+     */
+    public function test_run_should_pass_container_values()
+    {
+        $testClass = new class extends \Redbox\Testsuite\Tests\Assets\MockableTest {
+            protected $unitTest = null;
+            
+            public function setUnitTest(TestCase $unitTest)
+            {
+                $this->unitTest = $unitTest;
+            }
+            
+            /**
+             * Run the test.
+             *
+             * @param ContainerInterface $container The storage container for the TestSuite.
+             *
+             * @return bool
+             */
+            public function run(ContainerInterface $container): bool
+            {
+                $expected = 'Hello 2021';
+                $this->unitTest->assertEquals($expected, $container->get('__KEY__'));
+                return true;
+            }
+        };
+        
+        $test = $testClass::create();
+        $test->setUnitTest($this);
+    
+        $suite = new TestSuite();
+        $suite->attach($test);
+        
+        $suite->getContainer()->set('__KEY__', 'Hello 2021');
+        $suite->run();
+        
+    }
 }

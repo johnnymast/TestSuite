@@ -150,9 +150,10 @@ class TestSuite
          * Reset the test results
          */
         $this->reset();
+        $container = $this->getContainer();
         
         foreach ($this->tests as $test) {
-            $test->run();
+            $test->run($container);
             $this->score += $test->score->getScore();
             $tests_run++;
         }

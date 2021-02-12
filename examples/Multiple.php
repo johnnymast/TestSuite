@@ -1,14 +1,31 @@
 <?php
 
+/**
+ * Multiple.php
+ *
+ * This file demonstrate how to add multiple tests to the test suite
+ * and run the tests.
+ *
+ * PHP version 7.4
+ *
+ * @category Examples
+ * @package  RedboxTestSuite
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/redbox-testsuite
+ * @since    GIT:1.0
+ */
+
 require __DIR__.'/../vendor/autoload.php';
 
-use Redbox\Testsuite\Test;
+use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestSuite;
+use Redbox\Testsuite\Test;
 
 /**
  * JUST A SPEC DEMO FOR MY SELF
  */
-class SingleTest extends Test
+class TheTest extends Test
 {
     
     /**
@@ -50,17 +67,24 @@ class SingleTest extends Test
     /**
      * Run the test.
      *
-     * @return void
+     * @param ContainerInterface $container The storage container for the TestSuite.
+     *
+     * @return bool
      */
-    public function run()
+    public function run(ContainerInterface $container)
     {
         $this->checkAnswer(true);
         $this->checkAnswer(true);
         $this->checkAnswer(false);
+        
+        return true;
     }
 }
 
-$test = new SingleTest();
+/**
+ * Instantiate the test.
+ */
+$test = new TheTest();
 
 /**
  * Create a test suite
@@ -81,4 +105,4 @@ $suite->attach($test);
 $suite->run();
 
 echo "Total suite score: ".$suite->getScore()."\n";
-echo "Percentage complete: ".$test->score->percentage()."%\n";
+echo "Percentage complete: ".$test->score->percentage()."\n";

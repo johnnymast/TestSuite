@@ -1,14 +1,31 @@
 <?php
 
+/**
+ * Single.php
+ *
+ * This file demonstrate how to add a test to the test suite
+ * and run the test.
+ *
+ * PHP version 7.4
+ *
+ * @category Examples
+ * @package  RedboxTestSuite
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/redbox-testsuite
+ * @since    GIT:1.0
+ */
+
 require __DIR__.'/../vendor/autoload.php';
 
-use Redbox\Testsuite\Test;
+use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestSuite;
+use Redbox\Testsuite\Test;
 
 /**
- * JUST A SPEC DEMO FOR MY SELF
+ * Class SingleTest
  */
-class TheTest extends Test
+class SingleTest extends Test
 {
     
     /**
@@ -40,7 +57,7 @@ class TheTest extends Test
      *
      * @return void
      */
-    protected function checkAnswer($correct)
+    protected function checkAnswer(bool $correct)
     {
         if ($correct) {
             $this->score->increment(1);
@@ -50,22 +67,25 @@ class TheTest extends Test
     /**
      * Run the test.
      *
-     * @return bool
+     * @param ContainerInterface $container The storage container for the TestSuite.
+     *
+     * @return void
      */
-    public function run()
+    public function run(ContainerInterface $container)
     {
         $this->checkAnswer(true);
         $this->checkAnswer(true);
         $this->checkAnswer(false);
-        
-        return true;
     }
 }
 
-$test = new TheTest();
+/**
+ * Instantiate the test.
+ */
+$test = new SingleTest();
 
 /**
- * Create a test suite
+ * Create a test suite and attach the test.
  */
 $suite = new TestSuite();
 $suite->attach($test);
@@ -83,4 +103,4 @@ $suite->attach($test);
 $suite->run();
 
 echo "Total suite score: ".$suite->getScore()."\n";
-echo "Percentage complete: ".$test->score->percentage()."\n";
+echo "Percentage complete: ".$test->score->percentage()."%\n";

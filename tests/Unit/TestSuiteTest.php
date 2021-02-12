@@ -298,7 +298,14 @@ class TestSuiteTest extends TestCase
     {
         $testClass = new class extends \Redbox\Testsuite\Tests\Assets\MockableTest {
             protected $unitTest = null;
-            
+    
+            /**
+             * Pass the TestSuiteTest to the fake test.
+             *
+             * @param TestCase $unitTest The TestSuiteTest instance.
+             *
+             * @return void
+             */
             public function setUnitTest(TestCase $unitTest)
             {
                 $this->unitTest = $unitTest;

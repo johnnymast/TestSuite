@@ -17,7 +17,7 @@
 
 namespace Redbox\Testsuite\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
 use Redbox\Testsuite\Container;
 
 /**
@@ -25,7 +25,7 @@ use Redbox\Testsuite\Container;
  *
  * @package Redbox\Testsuite\Tests\Unit
  */
-class ContainerTest extends TestCase
+class ContainerTest extends PHPUNIT_TestCase
 {
     /**
      * Container instance to run tests on.

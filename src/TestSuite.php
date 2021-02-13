@@ -30,6 +30,12 @@ class TestSuite
      */
     protected ?\SplObjectStorage $tests = null;
     
+    /**
+     * Storage container to contain information
+     * for the tests.
+     *
+     * @var ContainerInterface|null
+     */
     protected ?ContainerInterface $container = null;
     
     /**
@@ -52,7 +58,7 @@ class TestSuite
     /**
      * Set he storage container for the test suite.
      *
-     * @param ContainerInterface $container The storage container for the test suite.
+     * @param  ContainerInterface  $container  The storage container for the test suite.
      *
      * @return void
      */
@@ -80,6 +86,12 @@ class TestSuite
     public function reset()
     {
         $this->score = 0;
+        
+        if ($this->tests->count() > 0) {
+            foreach ($this->tests as $test) {
+                $test->score->reset();
+            }
+        }
     }
     
     /**
@@ -103,9 +115,11 @@ class TestSuite
                 $test = new $info();
             }
             
-            if (is_subclass_of($test, Test::class) === false) {
+            if (is_subclass_of($test, TestCase::class) === false) {
                 throw new \InvalidArgumentException('Test does not extend Test abstract class.');
             }
+            
+            $test->setName(get_class($test).'_'.$this->tests->count());
             
             $this->tests->attach($test);
         }
@@ -115,11 +129,11 @@ class TestSuite
      * Detach a given test from the
      * TestSuite.
      *
-     * @param Test $test The test to detach.
+     * @param  TestCase  $test  The test to detach.
      *
      * @return void
      */
-    public function detach(Test $test)
+    public function detach(TestCase $test)
     {
         $this->tests->detach($test);
     }
@@ -128,11 +142,11 @@ class TestSuite
      * Check to see if the TestSuite has a given
      * test inside.
      *
-     * @param Test $test The Test to check for.
+     * @param  TestCase  $test  The Test to check for.
      *
      * @return bool
      */
-    public function has(Test $test)
+    public function has(TestCase $test)
     {
         return $this->tests->contains($test);
     }
@@ -140,16 +154,21 @@ class TestSuite
     /**
      * Run the tests
      *
+     * @param  bool  $reset  Should the tests reset before running
+     *
      * @return int The number of tests that ran.
      */
-    public function run(): int
+    public function run($reset = true): int
     {
         $tests_run = 0;
         
         /**
          * Reset the test results
          */
-        $this->reset();
+        if ($reset) {
+            $this->reset();
+        }
+        
         $container = $this->getContainer();
         
         foreach ($this->tests as $test) {
@@ -159,6 +178,23 @@ class TestSuite
         }
         
         return $tests_run;
+    }
+    
+    /**
+     * Return the answers/motivations from all tests.
+     *
+     * @return array
+     */
+    public function getAnswers(): array
+    {
+        if ($this->tests->count() > 0) {
+            $info = [];
+            foreach ($this->tests as $test) {
+                $info[$test->getName()] = $test->score->getScoreInfo();
+            }
+        }
+        
+        return $info;
     }
     
     /**

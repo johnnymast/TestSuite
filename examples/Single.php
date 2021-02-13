@@ -20,12 +20,12 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestSuite;
-use Redbox\Testsuite\Test;
+use Redbox\Testsuite\TestCase;
 
 /**
  * Class SingleTest
  */
-class SingleTest extends Test
+class SingleTestCase extends TestCase
 {
     
     /**
@@ -82,7 +82,7 @@ class SingleTest extends Test
 /**
  * Instantiate the test.
  */
-$test = new SingleTest();
+$test = new SingleTestCase();
 
 /**
  * Create a test suite and attach the test.

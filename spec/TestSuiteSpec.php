@@ -21,9 +21,9 @@ use PhpSpec\ObjectBehavior;
 use PhpSpec\Wrapper\Collaborator as CollaboratorAlias;
 use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
-use Redbox\Testsuite\Test;
+use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\Tests\Assets\MockableContainer;
-use Redbox\Testsuite\Tests\Assets\MockableTest;
+use Redbox\Testsuite\Tests\Assets\MockableTestCase;
 use Redbox\Testsuite\TestSuite;
 
 /**
@@ -115,7 +115,7 @@ class TestSuiteSpec extends ObjectBehavior
      */
     function it_should_attach_a_test($test)
     {
-        $test->beADoubleOf(Test::class);
+        $test->beADoubleOf(TestCase::class);
         
         $this->attach($test);
         $this->has($test)->shouldReturn(true);
@@ -130,7 +130,7 @@ class TestSuiteSpec extends ObjectBehavior
      */
     function it_should_detach_a_test(CollaboratorAlias $test)
     {
-        $test->beADoubleOf(Test::class);
+        $test->beADoubleOf(TestCase::class);
         
         $this->detach($test);
         $this->has($test)->shouldReturn(false);
@@ -145,7 +145,7 @@ class TestSuiteSpec extends ObjectBehavior
      */
     function it_should_return_all_tests_with_gettests(CollaboratorAlias $test)
     {
-        $test->beADoubleOf(Test::class);
+        $test->beADoubleOf(TestCase::class);
         
         $this->attach($test);
         
@@ -163,8 +163,8 @@ class TestSuiteSpec extends ObjectBehavior
      */
     function it_should_allow_for_multiple_attachments(CollaboratorAlias $test1, CollaboratorAlias $test2)
     {
-        $test1->beADoubleOf(Test::class);
-        $test2->beADoubleOf(Test::class);
+        $test1->beADoubleOf(TestCase::class);
+        $test2->beADoubleOf(TestCase::class);
         
         $this->attach([$test1, $test2]);
         
@@ -181,11 +181,11 @@ class TestSuiteSpec extends ObjectBehavior
     function it_can_attach_one_test_by_class_name()
     {
         $this->getTests()->shouldHaveCount(0);
-        $this->attach([MockableTest::class]);
+        $this->attach([MockableTestCase::class]);
         
         $this->getTests()->shouldHaveCount(1);
         
-        $this->getTests()->shouldHaveInstancesOfObjectWithType(MockableTest::class, 1);
+        $this->getTests()->shouldHaveInstancesOfObjectWithType(MockableTestCase::class, 1);
     }
     
     /**
@@ -197,11 +197,11 @@ class TestSuiteSpec extends ObjectBehavior
     function it_can_attach_multiple_tests_by_class_name()
     {
         $this->getTests()->shouldHaveCount(0);
-        $this->attach([MockableTest::class, MockableTest::class]);
+        $this->attach([MockableTestCase::class, MockableTestCase::class]);
         
         $this->getTests()->shouldHaveCount(2);
         
-        $this->getTests()->shouldHaveInstancesOfObjectWithType(MockableTest::class, 2);
+        $this->getTests()->shouldHaveInstancesOfObjectWithType(MockableTestCase::class, 2);
     }
     
     /**
@@ -211,7 +211,7 @@ class TestSuiteSpec extends ObjectBehavior
      */
     function it_should_run_a_single_test()
     {
-        $test = MockableTest::create();
+        $test = MockableTestCase::create();
         
         $this->attach($test);
         $this->run()->shouldReturn(1);
@@ -230,8 +230,8 @@ class TestSuiteSpec extends ObjectBehavior
      */
     function it_should_run_a_multiple_tests()
     {
-        $test1 = MockableTest::create();
-        $test2 = MockableTest::create();
+        $test1 = MockableTestCase::create();
+        $test2 = MockableTestCase::create();
         
         $this->attach([$test1, $test2]);
         $this->run()->shouldReturn(2);
@@ -252,10 +252,10 @@ class TestSuiteSpec extends ObjectBehavior
      */
     function it_should_score_five_with_one_test()
     {
-        $test = MockableTest::createWith(5);
+        $test = MockableTestCase::createWith(5);
         $this->attach($test);
         
-        $this->run();
+        $this->run(false);
         $this->getScore()->shouldReturn(5);
         
         /**
@@ -273,12 +273,12 @@ class TestSuiteSpec extends ObjectBehavior
      */
     function it_should_score_eight_with_both_of_the_tests()
     {
-        $test1 = MockableTest::createWith(5);
-        $test2 = MockableTest::createWith(3);
+        $test1 = MockableTestCase::createWith(5);
+        $test2 = MockableTestCase::createWith(3);
         
         $this->attach([$test1, $test2]);
         
-        $this->run();
+        $this->run(false);
         $this->getScore()->shouldReturn(8);
         
         /**
@@ -296,12 +296,12 @@ class TestSuiteSpec extends ObjectBehavior
      */
     function it_can_reset_it_self()
     {
-        $test1 = MockableTest::createWith(5);
-        $test2 = MockableTest::createWith(3);
+        $test1 = MockableTestCase::createWith(5);
+        $test2 = MockableTestCase::createWith(3);
         
         $this->attach([$test1, $test2]);
         
-        $this->run();
+        $this->run(false);
         $this->getScore()->shouldReturn(8);
         
         /**

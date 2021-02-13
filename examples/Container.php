@@ -19,13 +19,13 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Redbox\Testsuite\Interfaces\ContainerInterface;
-use Redbox\Testsuite\Test;
+use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\TestSuite;
 
 /**
  * Class MyFirstTest
  */
-class MyFirstTest extends Test
+class MyFirstTestCase extends TestCase
 {
     /**
      * Required function for tests indicating
@@ -85,7 +85,7 @@ class MyFirstTest extends Test
 /**
  * Instantiate the test.
  */
-$testInstance = new MyFirstTest();
+$testInstance = new MyFirstTestCase();
 
 /**
  * Create a test suite and attach the test.

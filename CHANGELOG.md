@@ -1,11 +1,13 @@
 ## 2.0
 
+- You can now opt not to reset tests scores every time the suite runs.
+- Added the possibility to add a motivation with the score increment.
 - Tests can now be attached to a TestSuite by only passing a php class name. Test suite will automatically initialize the test class.
 - Added a storage container to the TestSuite class that can be used to forward information to the tests.
 - Added tests for the new storage container class.
 - Added a new Container example in the example's directory.
 - Added comments to all tests spec or unit tests.
-
+- Updated a typo in license part of README.md.
 
 ## 1.0
 

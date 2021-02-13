@@ -19,14 +19,14 @@ namespace Redbox\Testsuite\Tests\Assets;
 
 use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
-use Redbox\Testsuite\Test;
+use Redbox\Testsuite\TestCase;
 
 /**
- * Class MockableTest
+ * Class MockableTestCase
  *
  * @package Redbox\Testsuite\Tests\Assets
  */
-class MockableTest extends Test
+class MockableTestCase extends TestCase
 {
     /**
      * Minimal score.
@@ -46,12 +46,12 @@ class MockableTest extends Test
      * Create an instance with a score min value and max value.
      *
      * @param int $score The score to initialize the mock with.
-     * @param int $min   The minimal score to initialize the moch with (optional)
-     * @param int $max   The maximal score to initialize the moch with (optional)
+     * @param int $min   The minimal score to initialize the mock with (optional)
+     * @param int $max   The maximal score to initialize the mock with (optional)
      *
-     * @return MockableTest
+     * @return MockableTestCase
      */
-    public static function createWith($score = 0, $min = 0, $max = 0): MockableTest
+    public static function createWith($score = 0, $min = 0, $max = 0): MockableTestCase
     {
         $instance = self::create();
         $instance->score->setScore($score);
@@ -65,9 +65,9 @@ class MockableTest extends Test
     /**
      * Create an instance of the MockableTest.
      *
-     * @return MockableTest
+     * @return MockableTestCase
      */
-    public static function create(): MockableTest
+    public static function create(): MockableTestCase
     {
         return new static();
     }

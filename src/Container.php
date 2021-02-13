@@ -31,7 +31,7 @@ class Container implements ContainerInterface
      *
      * @var array
      */
-    protected $storage = [];
+    protected array $storage = [];
     
     /**
      * Check to see if any information has been stored in the

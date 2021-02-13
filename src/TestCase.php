@@ -23,7 +23,7 @@ use Redbox\Testsuite\Interfaces\ContainerInterface;
  *
  * @package Redbox\Testsuite
  */
-abstract class Test
+abstract class TestCase
 {
     
     /**
@@ -35,6 +35,12 @@ abstract class Test
     public ?Score $score = null;
     
     /**
+     * @var string
+     */
+    public string $name = '';
+    
+    
+    /**
      * Test constructor.
      *
      * Please not tests cant overwrite the function.
@@ -42,6 +48,26 @@ abstract class Test
     final function __construct()
     {
         $this->score = new Score($this);
+    }
+    
+    /**
+     * Return the name of the test.
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+    
+    /**
+     * Set the test name.
+     *
+     * @param  string  $name The name of the test.
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
     }
     
     /**
@@ -64,7 +90,7 @@ abstract class Test
      * Tests must implement this method to start
      * running their tests.
      *
-     * @param ContainerInterface $container The storage container for the TestSuite.
+     * @param  ContainerInterface  $container  The storage container for the TestSuite.
      *
      * @return void
      */

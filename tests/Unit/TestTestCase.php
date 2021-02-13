@@ -17,7 +17,7 @@
 
 namespace Redbox\Testsuite\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;;
 use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
 
@@ -31,7 +31,7 @@ class TestTest extends TestCase
     /**
      * The test instance used for all the tests.
      *
-     * @var \Redbox\Testsuite\Test
+     * @var \Redbox\Testsuite\TestCase
      */
     protected $testInstance;
     
@@ -50,7 +50,7 @@ class TestTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->testInstance = new class extends \Redbox\Testsuite\Test {
+        $this->testInstance = new class extends \Redbox\Testsuite\TestCase {
             
             /**
              * Define the min score for this test.
@@ -85,17 +85,17 @@ class TestTest extends TestCase
             /**
              * Run the test.
              *
-             * @param ContainerInterface $container The storage container for the TestSuite.
+             * @param  ContainerInterface  $container  The storage container for the TestSuite.
              *
              * @return bool
              */
-            public function run(ContainerInterface  $container): bool
+            public function run(ContainerInterface $container): bool
             {
                 $this->executeTest1();
                 return true;
             }
         };
-    
+        
         $this->testContainer = new Container();
     }
     
@@ -138,7 +138,7 @@ class TestTest extends TestCase
      *
      * @return void
      */
-    public function test_run_should_increment_score()
+    public function test_run_could_increment_score()
     {
         $this->testInstance->run($this->testContainer);
         $this->assertEquals(2, $this->testInstance->score->getScore());
@@ -224,5 +224,31 @@ class TestTest extends TestCase
     public function test_percentage_should_be_0_without_increments()
     {
         $this->assertEquals(0, $this->testInstance->score->percentage());
+    }
+    
+    /**
+     * Test the reset function.
+     *
+     * @return void
+     */
+    public function test_the_reset_function_resets_to_default()
+    {
+        $this->testInstance->score->increment(11);
+        $this->testInstance->score->increment(11);
+        $this->testInstance->score->reset();
+        
+        $this->assertEquals(0, $this->testInstance->score->getScore());
+        $this->assertEquals(0, $this->testInstance->score->getIncrements());
+        $this->assertCount(0, $this->testInstance->score->getScoreInfo());
+    }
+    
+    /**
+     * Return that the score returns the test correctly.
+     *
+     * @return void
+     */
+    public function test_score_gettest_returns_the_test()
+    {
+        $this->assertEquals($this->testInstance, $this->testInstance->score->getTest());
     }
 }

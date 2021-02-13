@@ -19,7 +19,7 @@ namespace spec\Redbox\Testsuite;
 
 use PhpSpec\ObjectBehavior;
 use Redbox\Testsuite\Score;
-use Redbox\Testsuite\Tests\Assets\MockableTest;
+use Redbox\Testsuite\Tests\Assets\MockableTestCase;
 
 /**
  * Class ScoreSpec
@@ -35,7 +35,7 @@ class ScoreSpec extends ObjectBehavior
      */
     function let()
     {
-        $this->beConstructedWith(MockableTest::createWith(0, 0, 200));
+        $this->beConstructedWith(MockableTestCase::createWith(0, 0, 200));
     }
     
     /**
@@ -78,6 +78,17 @@ class ScoreSpec extends ObjectBehavior
     {
         $this->increment(1);
         $this->getScore()->shouldBe(1);
+    }
+    
+    /**
+     * Test that score motivations work.
+     *
+     * @return void
+     */
+    function it_can_increment_scores_and_leave_a_motivation()
+    {
+        $this->increment(1, 'Hello World');
+        $this->getScoreInfo()[0]->shouldContain('Hello World');
     }
     
     /**
@@ -130,5 +141,32 @@ class ScoreSpec extends ObjectBehavior
         $this->increment(11);
         $this->increment(11);
         $this->percentage()->shouldBeDouble(0.11);
+    }
+    
+    /**
+     * Test the reset function.
+     *
+     * @return void
+     */
+    function it_should_reset_values_to_default_using_reset()
+    {
+        $this->increment(11);
+        $this->increment(11);
+        $this->reset();
+        
+        $this->getScore()->shouldReturn(0);
+        $this->getIncrements()->shouldReturn(0);
+        $this->getScoreInfo()->shouldHaveCount(0);
+    }
+    
+    /**
+     * Test if the setName and getName methods works correctly.
+     *
+     * @return void
+     */
+    function it_can_set_and_get_the_name_of_the_test()
+    {
+        $this->getTest()->setName('__EEK__');
+        $this->getTest()->getName()->shouldReturn('__EEK__');
     }
 }

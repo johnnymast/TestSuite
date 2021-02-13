@@ -17,11 +17,11 @@
 
 namespace Redbox\Testsuite\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
-use Redbox\Testsuite\Test;
+use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\Tests\Assets\MockableContainer;
-use Redbox\Testsuite\Tests\Assets\MockableTest;
+use Redbox\Testsuite\Tests\Assets\MockableTestCase;
 use Redbox\Testsuite\TestSuite;
 
 /**
@@ -29,7 +29,7 @@ use Redbox\Testsuite\TestSuite;
  *
  * @package Redbox\Testsuite\Tests\Unit
  */
-class TestSuiteTest extends TestCase
+class TestSuiteTest extends PHPUNIT_TestCase
 {
     
     /**
@@ -82,7 +82,7 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_take_at_test()
     {
-        $test = $this->createMock(Test::class);
+        $test = $this->createMock(TestCase::class);
         $suite = new TestSuite();
         $suite->attach($test);
         
@@ -96,8 +96,8 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_take_multiple_tests()
     {
-        $test1 = $this->createMock(Test::class);
-        $test2 = $this->createMock(Test::class);
+        $test1 = $this->createMock(TestCase::class);
+        $test2 = $this->createMock(TestCase::class);
         $suite = new TestSuite();
         $suite->attach([$test1, $test2]);
         
@@ -112,7 +112,7 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_detach_a_test()
     {
-        $test = $this->createMock(Test::class);
+        $test = $this->createMock(TestCase::class);
         $suite = new TestSuite();
         $suite->attach($test);
         
@@ -129,7 +129,7 @@ class TestSuiteTest extends TestCase
      */
     function test_it_should_return_all_tests_with_gettests()
     {
-        $test = $this->createMock(Test::class);
+        $test = $this->createMock(TestCase::class);
         
         $suite = new TestSuite();
         $suite->attach($test);
@@ -145,7 +145,7 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_run_once()
     {
-        $test = MockableTest::createWith(1);
+        $test = MockableTestCase::createWith(1);
         
         $suite = new TestSuite();
         $suite->attach($test);
@@ -163,8 +163,8 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_multiple_tests()
     {
-        $test1 = MockableTest::createWith(1);
-        $test2 = MockableTest::createWith(2);
+        $test1 = MockableTestCase::createWith(1);
+        $test2 = MockableTestCase::createWith(2);
         
         $suite = new TestSuite();
         $suite->attach([$test1, $test2]);
@@ -185,13 +185,13 @@ class TestSuiteTest extends TestCase
         $suite = new TestSuite();
         
         $this->assertCount(0, $suite->getTests());
-        $suite->attach(MockableTest::class);
+        $suite->attach(MockableTestCase::class);
         
         $this->assertCount(1, $suite->getTests());
         
         $expected = 1;
         $counter = 0;
-        $ofType = MockableTest::class;
+        $ofType = MockableTestCase::class;
         
         foreach ($suite->getTests() as $test) {
             if ($test instanceof $ofType) {
@@ -213,13 +213,13 @@ class TestSuiteTest extends TestCase
         $suite = new TestSuite();
         
         $this->assertCount(0, $suite->getTests());
-        $suite->attach([MockableTest::class, MockableTest::class]);
+        $suite->attach([MockableTestCase::class, MockableTestCase::class]);
         
         $this->assertCount(2, $suite->getTests());
         
         $expected = 2;
         $counter = 0;
-        $ofType = MockableTest::class;
+        $ofType = MockableTestCase::class;
         
         foreach ($suite->getTests() as $test) {
             if ($test instanceof $ofType) {
@@ -237,15 +237,14 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_calculate_score_of_one_test()
     {
-        $test = MockableTest::createWith(4);
+        $test = MockableTestCase::createWith(4);
         
         $suite = new TestSuite();
         $suite->attach($test);
-        $suite->run();
+        $suite->run(false);
         
         $actual = $suite->getScore();
         $expected = 4;
-        
         
         $this->assertEquals($expected, $actual);
     }
@@ -257,12 +256,12 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_calculate_score_of_multiple_tests()
     {
-        $test1 = MockableTest::createWith(4);
-        $test2 = MockableTest::createWith(5);
+        $test1 = MockableTestCase::createWith(4);
+        $test2 = MockableTestCase::createWith(5);
         
         $suite = new TestSuite();
         $suite->attach([$test1, $test2]);
-        $suite->run();
+        $suite->run(false);
         
         $actual = $suite->getScore();
         $expected = 9;
@@ -276,12 +275,12 @@ class TestSuiteTest extends TestCase
      */
     public function test_getscore_returns_the_correct_value()
     {
-        $test1 = MockableTest::createWith();
+        $test1 = MockableTestCase::createWith();
         $test1->score->increment(4);
         
         $suite = new TestSuite();
         $suite->attach([$test1]);
-        $suite->run();
+        $suite->run(false);
         
         $actual = $suite->getScore();
         $expected = 4;
@@ -296,17 +295,17 @@ class TestSuiteTest extends TestCase
      */
     public function test_run_should_pass_container_values()
     {
-        $testClass = new class extends \Redbox\Testsuite\Tests\Assets\MockableTest {
+        $testClass = new class extends \Redbox\Testsuite\Tests\Assets\MockableTestCase {
             protected $unitTest = null;
-    
+            
             /**
              * Pass the TestSuiteTest to the fake test.
              *
-             * @param TestCase $unitTest The TestSuiteTest instance.
+             * @param  TestCase  $unitTest  The TestSuiteTest instance.
              *
              * @return void
              */
-            public function setUnitTest(TestCase $unitTest)
+            public function setUnitTest(PHPUNIT_TestCase $unitTest)
             {
                 $this->unitTest = $unitTest;
             }
@@ -314,7 +313,7 @@ class TestSuiteTest extends TestCase
             /**
              * Run the test.
              *
-             * @param ContainerInterface $container The storage container for the TestSuite.
+             * @param  ContainerInterface  $container  The storage container for the TestSuite.
              *
              * @return bool
              */
@@ -328,12 +327,87 @@ class TestSuiteTest extends TestCase
         
         $test = $testClass::create();
         $test->setUnitTest($this);
-    
+        
         $suite = new TestSuite();
         $suite->attach($test);
         
         $suite->getContainer()->set('__KEY__', 'Hello 2021');
         $suite->run();
+    }
+    
+    /**
+     * Test that names for tests are automatically set within the
+     * test suite.
+     *
+     * @return void
+     */
+    public function test_all_tests_get_a_unique_name()
+    {
+        $test1 = MockableTestCase::create();
+        $test2 = MockableTestCase::create();
+        
+        $suite = new TestSuite();
+        $suite->attach([$test1, $test2]);
+        
+        $this->assertEquals(get_class($test1).'_0', $test1->getName());
+        $this->assertEquals(get_class($test1).'_1', $test2->getName());
+    }
+    
+    /**
+     * Test that getAnswers() returns the correct motivations.
+     *
+     * @return void
+     */
+    public function test_get_answers_has_the_answers()
+    {
+        $test1 = MockableTestCase::create();
+        $test2 = MockableTestCase::create();
+        
+        $suite = new TestSuite();
+        $suite->attach([$test1, $test2]);
+        
+        $test1->score->increment(1, '__EEK__');
+        $test1->score->increment(2, '__QUAKE__');
+        $test2->score->increment(1, '__DUCK__');
+        $test2->score->increment(1, '__SUCK__');
+        $test2->score->increment(1, '__MUCK__');
+        
+        $answers = $suite->getAnswers();
+        
+        $info = current($answers);
+        $this->assertEqualsCanonicalizing($info,
+          [
+            [
+              'score' => 1,
+              'increment' => 0,
+              'motivation' => '__EEK__'
+            ],
+            [
+              'score' => 2,
+              'increment' => 1,
+              'motivation' => '__QUAKE__'
+            ]
+          ]);
+        
+        $info = next($answers);
+        $this->assertEqualsCanonicalizing($info,
+          [
+            [
+              'score' => 1,
+              'increment' => 0,
+              'motivation' => '__DUCK__'
+            ],
+            [
+              'score' => 1,
+              'increment' => 1,
+              'motivation' => '__SUCK__'
+            ],
+            [
+              'score' => 1,
+              'increment' => 2,
+              'motivation' => '__MUCK__'
+            ]
+          ]);
         
     }
 }

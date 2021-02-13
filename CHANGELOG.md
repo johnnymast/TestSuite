@@ -1,5 +1,6 @@
 ## 2.0
 
+- Added a method of entering the answer of the user to the score increment.
 - You can now opt not to reset tests scores every time the suite runs.
 - Added the possibility to add a motivation with the score increment.
 - Tests can now be attached to a TestSuite by only passing a php class name. Test suite will automatically initialize the test class.

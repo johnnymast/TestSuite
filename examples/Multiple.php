@@ -22,8 +22,9 @@ use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestSuite;
 use Redbox\Testsuite\TestCase;
 
+
 /**
- * JUST A SPEC DEMO FOR MY SELF
+ * Class TheTestCase
  */
 class TheTestCase extends TestCase
 {

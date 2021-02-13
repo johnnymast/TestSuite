@@ -303,7 +303,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
             /**
              * Pass the TestSuiteTest to the fake test.
              *
-             * @param  TestCase  $unitTest  The TestSuiteTest instance.
+             * @param TestCase $unitTest The TestSuiteTest instance.
              *
              * @return void
              */
@@ -315,7 +315,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
             /**
              * Run the test.
              *
-             * @param  ContainerInterface  $container  The storage container for the TestSuite.
+             * @param ContainerInterface $container The storage container for the TestSuite.
              *
              * @return bool
              */
@@ -378,8 +378,8 @@ class TestSuiteTest extends PHPUNIT_TestCase
         
         $info = current($answers);
         $this->assertEqualsCanonicalizing(
-          $info,
-          [
+            $info,
+            [
             [
               'score' => 1,
               'increment' => 0,
@@ -392,13 +392,13 @@ class TestSuiteTest extends PHPUNIT_TestCase
               'motivation' => '__QUAKE__',
               'answer' => 'This it answer'
             ]
-          ]
+            ]
         );
         
         $info = next($answers);
         $this->assertEqualsCanonicalizing(
-          $info,
-          [
+            $info,
+            [
             [
               'score' => 1,
               'increment' => 0,
@@ -417,7 +417,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
               'motivation' => '__MUCK__',
               'answer' => '',
             ]
-          ]
+            ]
         );
     }
 }

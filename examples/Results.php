@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Single.php
+ * Results.php
  *
  * This file demonstrate how the getAnswers function can help you
  * interpret the answers given bij the test.
@@ -122,12 +122,13 @@ class RealTest extends TestCase
      * Read commandline input.
      *
      * @param string $prompt The prompt to display to the user.
+     * @param string $answer The suggested answer.
      *
      * @return false|string
      */
     private function readline($prompt = '', $answer = '')
     {
-        return readline($prompt. ' ('.$answer.'): ');
+        return readline($prompt.' ('.$answer.'): ');
     }
     
     /**

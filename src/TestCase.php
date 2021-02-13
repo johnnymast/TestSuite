@@ -35,10 +35,11 @@ abstract class TestCase
     public ?Score $score = null;
     
     /**
+     * The name of this TestCase.
+     *
      * @var string
      */
-    public string $name = '';
-    
+    private string $name = '';
     
     /**
      * Test constructor.
@@ -63,7 +64,9 @@ abstract class TestCase
     /**
      * Set the test name.
      *
-     * @param  string  $name The name of the test.
+     * @param string $name The name of the test.
+     *
+     * @return void
      */
     public function setName(string $name)
     {
@@ -90,7 +93,7 @@ abstract class TestCase
      * Tests must implement this method to start
      * running their tests.
      *
-     * @param  ContainerInterface  $container  The storage container for the TestSuite.
+     * @param ContainerInterface $container The storage container for the TestSuite.
      *
      * @return void
      */

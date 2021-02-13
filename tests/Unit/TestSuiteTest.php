@@ -17,7 +17,8 @@
 
 namespace Redbox\Testsuite\Tests\Unit;
 
-use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;;
+use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
+;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\Tests\Assets\MockableContainer;
@@ -301,7 +302,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
             /**
              * Pass the TestSuiteTest to the fake test.
              *
-             * @param  TestCase  $unitTest  The TestSuiteTest instance.
+             * @param TestCase $unitTest The TestSuiteTest instance.
              *
              * @return void
              */
@@ -313,7 +314,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
             /**
              * Run the test.
              *
-             * @param  ContainerInterface  $container  The storage container for the TestSuite.
+             * @param ContainerInterface $container The storage container for the TestSuite.
              *
              * @return bool
              */
@@ -375,8 +376,9 @@ class TestSuiteTest extends PHPUNIT_TestCase
         $answers = $suite->getAnswers();
         
         $info = current($answers);
-        $this->assertEqualsCanonicalizing($info,
-          [
+        $this->assertEqualsCanonicalizing(
+            $info,
+            [
             [
               'score' => 1,
               'increment' => 0,
@@ -387,11 +389,13 @@ class TestSuiteTest extends PHPUNIT_TestCase
               'increment' => 1,
               'motivation' => '__QUAKE__'
             ]
-          ]);
+            ]
+        );
         
         $info = next($answers);
-        $this->assertEqualsCanonicalizing($info,
-          [
+        $this->assertEqualsCanonicalizing(
+            $info,
+            [
             [
               'score' => 1,
               'increment' => 0,
@@ -407,7 +411,8 @@ class TestSuiteTest extends PHPUNIT_TestCase
               'increment' => 2,
               'motivation' => '__MUCK__'
             ]
-          ]);
+            ]
+        );
         
     }
 }

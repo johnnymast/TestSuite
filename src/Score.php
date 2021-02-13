@@ -54,7 +54,7 @@ class Score
     /**
      * Score constructor.
      *
-     * @param  TestCase  $test  The Test this score belongs to.
+     * @param TestCase $test The Test this score belongs to.
      */
     public function __construct(TestCase $test)
     {
@@ -78,8 +78,8 @@ class Score
     /**
      * Increment the score by $score amount.
      *
-     * @param  mixed   $value       The value to increment the score with (float/double or int).
-     * @param  string  $motivation  A motivation for this score.
+     * @param mixed  $value      The value to increment the score with (float/double or int).
+     * @param string $motivation A motivation for this score.
      *
      * @return void
      */
@@ -180,7 +180,7 @@ class Score
     /**
      * Set to score to a given value.
      *
-     * @param  int  $value  The value to set as the score.
+     * @param int $value The value to set as the score.
      *
      * @return void
      */

@@ -24,41 +24,138 @@ use Redbox\Testsuite\TestSuite;
 
 $questions = [
   [
-    'text' => '5+5 = ',
+    'text' => '5+5 =',
     'answer' => 10,
     'score_good' => 1,
     'score_wrong' => 0,
     'answer_wrong' => 'You are Wrong 5+5=10',
-    'answer_current' => 'You are right 5+5=10',
+    'answer_correct' => 'You are right 5+5=10',
   ],
   [
-    'text' => 'Is this script running on php? ',
+    'text' => 'Is this script running on php?',
     'answer' => 'yes',
     'score_good' => 1,
     'score_wrong' => 0,
     'answer_wrong' => 'You are wrong this script is running on php.',
-    'answer_current' => 'You are right this script is created in php.',
+    'answer_correct' => 'You are right this script is created in php.',
   ],
 ];
 
-class Test extends TestCase
+/**
+ * Create a table for cli output.
+ *
+ * @param $answers The answers given in the test.
+ *
+ * @return string
+ */
+function formatOutput($answers)
 {
-    public function minScore()
+    $table_header = [];
+    $table_rows = [];
+    $longestLine = 0;
+    
+    foreach ($answers as $answer) {
+        $row = sprintf(
+            '| %s | %s | %s |',
+            str_pad($answer['increment'], 10, " "),
+            str_pad($answer['motivation'], 50, " "),
+            str_pad($answer['score'], 5, " "),
+        );
+        
+        if (strlen($row) > $longestLine) {
+            $longestLine = strlen($row);
+        }
+        
+        $table_rows[] = $row;
+    }
+    
+    $table_header [] = str_repeat('_', $longestLine);
+    $table_header[] = sprintf(
+        '| %s | %s | %s |',
+        str_pad('Increment', 10, " "),
+        str_pad('Movitation', 50, " "),
+        str_pad('Score', 5, " ")
+    );
+    
+    $table_header [] = str_repeat('-', $longestLine);
+    $table_footer = [str_repeat('-', $longestLine), "\n"];
+    
+    $table = [
+      ...$table_header,
+      ...$table_rows,
+      ...$table_footer,
+    ];
+    
+    return implode("\n", $table);
+}
+
+/**
+ * Class RealTest
+ */
+class RealTest extends TestCase
+{
+    /**
+     * Required function for tests indicating
+     * the minimal score for this test.
+     *
+     * @return int
+     */
+    public function minScore(): int
     {
         return 0;
     }
     
-    public function maxScore()
+    /**
+     * Required function for tests indicating
+     * the maximum score for this test.
+     *
+     * @return int
+     */
+    public function maxScore(): int
     {
         return 2;
     }
     
-    private function askQuestion($question)
+    /**
+     * Read commandline input.
+     *
+     * @param string $prompt The prompt to display to the user.
+     *
+     * @return false|string
+     */
+    private function readline($prompt = '', $answer = '')
     {
-        $sentence = $question->text;
-        
+        return readline($prompt. ' ('.$answer.'): ');
     }
     
+    /**
+     * As the user the question and process the result.
+     *
+     * @param array $question Array containing infromation about this question.
+     *
+     * @return void
+     */
+    private function askQuestion($question)
+    {
+        $text = $question['text'];
+        $answer = $question['answer'];
+        
+        $input = $this->readline($text, $answer);
+        
+        if ($input == $answer) {
+            $this->score->increment($question['score_good'], $question['answer_correct']);
+        } else {
+            $this->score->increment($question['score_wrong'], $question['answer_wrong']);
+        }
+    }
+    
+    /**
+     * Entry point for the test to start running.
+     *
+     * @param ContainerInterface $container The storage container holding the questions.
+     *
+     * @return void
+     */
     public function run(ContainerInterface $container)
     {
         $questions = $container->get('questions');
@@ -66,8 +163,18 @@ class Test extends TestCase
             $this->askQuestion($question);
         }
     }
-    
 }
 
+$test = new RealTest();
 $suite = new TestSuite();
 $suite->getContainer()->set('questions', $questions);
+$suite->attach(RealTest::class);
+$suite->run();
+
+
+$answers = current($suite->getAnswers());
+
+echo formatOutput($answers);
+
+echo "Total suite score: ".$suite->getScore()."\n";
+echo "Percentage complete: ".$test->score->percentage()."%\n";

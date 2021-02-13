@@ -58,7 +58,7 @@ class TestSuite
     /**
      * Set he storage container for the test suite.
      *
-     * @param  ContainerInterface  $container  The storage container for the test suite.
+     * @param ContainerInterface $container The storage container for the test suite.
      *
      * @return void
      */
@@ -129,7 +129,7 @@ class TestSuite
      * Detach a given test from the
      * TestSuite.
      *
-     * @param  TestCase  $test  The test to detach.
+     * @param TestCase $test The test to detach.
      *
      * @return void
      */
@@ -142,7 +142,7 @@ class TestSuite
      * Check to see if the TestSuite has a given
      * test inside.
      *
-     * @param  TestCase  $test  The Test to check for.
+     * @param TestCase $test The Test to check for.
      *
      * @return bool
      */
@@ -154,7 +154,7 @@ class TestSuite
     /**
      * Run the tests
      *
-     * @param  bool  $reset  Should the tests reset before running
+     * @param bool $reset Should the tests reset before running
      *
      * @return int The number of tests that ran.
      */

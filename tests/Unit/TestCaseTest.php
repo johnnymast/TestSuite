@@ -26,7 +26,7 @@ use Redbox\Testsuite\Interfaces\ContainerInterface;
  *
  * @package Redbox\Testsuite\Tests\Unit
  */
-class TestTest extends TestCase
+class TestCaseTest extends PHPUNIT_TestCase
 {
     /**
      * The test instance used for all the tests.

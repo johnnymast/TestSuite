@@ -16,5 +16,5 @@
  */
 
 require_once dirname(__FILE__).'/../vendor/autoload.php';
-require_once dirname(__FILE__).'/Assets/MockableTest.php';
+require_once dirname(__FILE__).'/Assets/MockableTestCase.php';
 require_once dirname(__FILE__).'/Assets/MockableContainer.php';

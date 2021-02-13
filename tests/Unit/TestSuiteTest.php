@@ -18,12 +18,13 @@
 namespace Redbox\Testsuite\Tests\Unit;
 
 use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
-;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\Tests\Assets\MockableContainer;
 use Redbox\Testsuite\Tests\Assets\MockableTestCase;
 use Redbox\Testsuite\TestSuite;
+
+;
 
 /**
  * Class TestSuiteTest
@@ -302,7 +303,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
             /**
              * Pass the TestSuiteTest to the fake test.
              *
-             * @param TestCase $unitTest The TestSuiteTest instance.
+             * @param  TestCase  $unitTest  The TestSuiteTest instance.
              *
              * @return void
              */
@@ -314,7 +315,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
             /**
              * Run the test.
              *
-             * @param ContainerInterface $container The storage container for the TestSuite.
+             * @param  ContainerInterface  $container  The storage container for the TestSuite.
              *
              * @return bool
              */
@@ -368,7 +369,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
         $suite->attach([$test1, $test2]);
         
         $test1->score->increment(1, '__EEK__');
-        $test1->score->increment(2, '__QUAKE__');
+        $test1->score->increment(2, '__QUAKE__', 'This it answer');
         $test2->score->increment(1, '__DUCK__');
         $test2->score->increment(1, '__SUCK__');
         $test2->score->increment(1, '__MUCK__');
@@ -377,42 +378,46 @@ class TestSuiteTest extends PHPUNIT_TestCase
         
         $info = current($answers);
         $this->assertEqualsCanonicalizing(
-            $info,
-            [
+          $info,
+          [
             [
               'score' => 1,
               'increment' => 0,
-              'motivation' => '__EEK__'
+              'motivation' => '__EEK__',
+              'answer' => '',
             ],
             [
               'score' => 2,
               'increment' => 1,
-              'motivation' => '__QUAKE__'
+              'motivation' => '__QUAKE__',
+              'answer' => 'This it answer'
             ]
-            ]
+          ]
         );
         
         $info = next($answers);
         $this->assertEqualsCanonicalizing(
-            $info,
-            [
+          $info,
+          [
             [
               'score' => 1,
               'increment' => 0,
-              'motivation' => '__DUCK__'
+              'motivation' => '__DUCK__',
+              'answer' => '',
             ],
             [
               'score' => 1,
               'increment' => 1,
-              'motivation' => '__SUCK__'
+              'motivation' => '__SUCK__',
+              'answer' => '',
             ],
             [
               'score' => 1,
               'increment' => 2,
-              'motivation' => '__MUCK__'
+              'motivation' => '__MUCK__',
+              'answer' => '',
             ]
-            ]
+          ]
         );
-        
     }
 }

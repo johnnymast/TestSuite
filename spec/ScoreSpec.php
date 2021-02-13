@@ -81,14 +81,15 @@ class ScoreSpec extends ObjectBehavior
     }
     
     /**
-     * Test that score motivations work.
+     * Test that score motivations and answers work.
      *
      * @return void
      */
     function it_can_increment_scores_and_leave_a_motivation()
     {
-        $this->increment(1, 'Hello World');
+        $this->increment(1, 'Hello World', 'My answer');
         $this->getScoreInfo()[0]->shouldContain('Hello World');
+        $this->getScoreInfo()[0]->shouldContain('My answer');
     }
     
     /**

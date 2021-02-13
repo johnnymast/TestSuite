@@ -58,6 +58,7 @@ function formatOutput($answers)
         $row = sprintf(
             '| %s | %s | %s |',
             str_pad($answer['increment'], 10, " "),
+            str_pad($answer['answer'], 10, " "),
             str_pad($answer['motivation'], 50, " "),
             str_pad($answer['score'], 5, " "),
         );
@@ -73,7 +74,8 @@ function formatOutput($answers)
     $table_header[] = sprintf(
         '| %s | %s | %s |',
         str_pad('Increment', 10, " "),
-        str_pad('Movitation', 50, " "),
+        str_pad('Answer', 10, " "),
+        str_pad('Motivation', 50, " "),
         str_pad('Score', 5, " ")
     );
     
@@ -143,9 +145,9 @@ class RealTest extends TestCase
         $input = $this->readline($text, $answer);
         
         if ($input == $answer) {
-            $this->score->increment($question['score_good'], $question['answer_correct']);
+            $this->score->increment($question['score_good'], $question['answer_correct'], $input);
         } else {
-            $this->score->increment($question['score_wrong'], $question['answer_wrong']);
+            $this->score->increment($question['score_wrong'], $question['answer_wrong'], $input);
         }
     }
     

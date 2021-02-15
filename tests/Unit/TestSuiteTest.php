@@ -420,4 +420,49 @@ class TestSuiteTest extends PHPUNIT_TestCase
             ]
         );
     }
+    
+    /**
+     * Test that beforeTest() is being called.
+     *
+     * @return void
+     */
+    public function test_beforetest_is_being_called()
+    {
+        $test = MockableTestCase::create();
+        
+        $suite = $this->getMockBuilder(TestSuite::class)
+            ->onlyMethods(['beforeTest'])
+            ->getMock();
+    
+        $suite->attach($test);
+        
+        $suite
+            ->expects($this->once())
+            ->method('beforeTest');
+          
+        $suite->run();
+    }
+    
+    /**
+     * Test that afterTest() is being called.
+     *
+     * @return void
+     */
+    public function test_aftertest_is_being_called()
+    {
+        $test = MockableTestCase::create();
+        
+        
+        $suite = $this->getMockBuilder(TestSuite::class)
+            ->onlyMethods(['afterTest'])
+            ->getMock();
+        
+        $suite->attach($test);
+        
+        $suite
+            ->expects($this->once())
+            ->method('afterTest');
+        
+        $suite->run();
+    }
 }

@@ -49,6 +49,18 @@ abstract class TestCase
     final function __construct()
     {
         $this->score = new Score($this);
+        $this->afterCreation();
+    }
+    
+    /**
+     * This function will be called from within the constructor.
+     * This allows you to setup some data from within the
+     *
+     * @return void
+     */
+    protected function afterCreation()
+    {
+        // Overwrite at will
     }
     
     /**

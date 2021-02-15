@@ -18,9 +18,11 @@
 namespace Redbox\Testsuite\Tests\Unit;
 
 use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
-;
 use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
+use Redbox\Testsuite\TestCase;
+
+;
 
 /**
  * Class TestTest
@@ -251,5 +253,26 @@ class TestCaseTest extends PHPUNIT_TestCase
     public function test_score_gettest_returns_the_test()
     {
         $this->assertEquals($this->testInstance, $this->testInstance->score->getTest());
+    }
+    
+    /**
+     * Test that afterCreation() is being called.
+     *
+     * @return void
+     */
+    public function test_aftercreation_is_being_called()
+    {
+        $mock = $this->getMockBuilder(TestCase::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['afterCreation', 'minScore', 'maxScore', 'run'])
+            ->getMock();
+        
+        $mock->expects($this->once())
+            ->method('afterCreation');
+        
+        
+        $reflectedClass = new \ReflectionClass(TestCase::class);
+        $constructor = $reflectedClass->getConstructor();
+        $constructor->invoke($mock);
     }
 }

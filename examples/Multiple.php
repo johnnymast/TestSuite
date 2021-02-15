@@ -22,7 +22,6 @@ use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestSuite;
 use Redbox\Testsuite\TestCase;
 
-
 /**
  * Class TheTestCase
  */
@@ -107,3 +106,10 @@ $suite->run();
 
 echo "Total suite score: ".$suite->getScore()."\n";
 echo "Percentage complete: ".$test->score->percentage()."\n";
+
+/**
+ * Output:
+ *
+ * Total suite score: 2
+ * Percentage complete: 50
+ */

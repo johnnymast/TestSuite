@@ -56,6 +56,29 @@ class TestSuite
     }
     
     /**
+     * This function will be called before every
+     * test.
+     *
+     * @return void
+     */
+    public function beforeTest()
+    {
+        // Overwrite at will
+    }
+    
+    /**
+     * This function will be called after every
+     * test.
+     *
+     * @return void
+     */
+    public function afterTest()
+    {
+        // Overwrite at will
+    }
+    
+    
+    /**
      * Set he storage container for the test suite.
      *
      * @param ContainerInterface $container The storage container for the test suite.
@@ -172,7 +195,12 @@ class TestSuite
         $container = $this->getContainer();
         
         foreach ($this->tests as $test) {
+            $this->beforeTest();
+            
             $test->run($container);
+            
+            $this->afterTest();
+            
             $this->score += $test->score->getScore();
             $tests_run++;
         }

@@ -123,9 +123,9 @@ class TestSuite
      *
      * @param $info The Test to attach.
      *
-     * @return void
+     * @return $this
      */
-    public function attach($info)
+    public function attach($info): self
     {
         if (is_array($info) === true) {
             foreach ($info as $test) {
@@ -146,6 +146,8 @@ class TestSuite
             
             $this->tests->attach($test);
         }
+        
+        return $this;
     }
     
     /**
@@ -154,11 +156,12 @@ class TestSuite
      *
      * @param TestCase $test The test to detach.
      *
-     * @return void
+     * @return $this
      */
-    public function detach(TestCase $test)
+    public function detach(TestCase $test): self
     {
         $this->tests->detach($test);
+        return $this;
     }
     
     /**

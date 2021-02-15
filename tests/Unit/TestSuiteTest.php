@@ -70,11 +70,23 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_it_only_takes_tests()
+    public function test_attach_only_takes_tests()
     {
         $this->expectException(\InvalidArgumentException::class);
         $suite = new TestSuite();
         $suite->attach('invalid_type');
+    }
+    
+    
+    /**
+     * Test attach() returns $this.
+     *
+     * @return void
+     */
+    public function test_attach_returns_self()
+    {
+        $suite = new TestSuite();
+        $this->assertInstanceOf(TestSuite::class, $suite->attach(MockableTestCase::class));
     }
     
     /**
@@ -122,6 +134,20 @@ class TestSuiteTest extends PHPUNIT_TestCase
         
         $suite->detach($test);
         $this->assertFalse($suite->has($test));
+    }
+    
+    /**
+     * Test detach() returns $this.
+     *
+     * @return void
+     */
+    public function test_detach_returns_self()
+    {
+        $suite = new TestSuite();
+        $test = MockableTestCase::create();
+        
+        $suite->attach($test);
+        $this->assertInstanceOf(TestSuite::class, $suite->detach($test));
     }
     
     /**
@@ -433,13 +459,13 @@ class TestSuiteTest extends PHPUNIT_TestCase
         $suite = $this->getMockBuilder(TestSuite::class)
             ->onlyMethods(['beforeTest'])
             ->getMock();
-    
+        
         $suite->attach($test);
         
         $suite
             ->expects($this->once())
             ->method('beforeTest');
-          
+        
         $suite->run();
     }
     

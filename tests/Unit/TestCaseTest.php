@@ -259,6 +259,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      * Test that afterCreation() is being called.
      *
      * @return void
+     * @throws \ReflectionException
      */
     public function test_aftercreation_is_being_called()
     {
@@ -269,7 +270,6 @@ class TestCaseTest extends PHPUNIT_TestCase
         
         $mock->expects($this->once())
             ->method('afterCreation');
-        
         
         $reflectedClass = new \ReflectionClass(TestCase::class);
         $constructor = $reflectedClass->getConstructor();

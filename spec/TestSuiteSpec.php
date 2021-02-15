@@ -25,7 +25,6 @@ use Redbox\Testsuite\Tests\Assets\MockableContainer;
 use Redbox\Testsuite\Tests\Assets\MockableTestCase;
 use Redbox\Testsuite\TestSuite;
 
-
 /**
  * Class
  * TestSuiteSpec
@@ -47,11 +46,11 @@ class TestSuiteSpec extends ObjectBehavior
     {
         return [
           'haveInstancesOfObjectWithType' => function ($subject, $type, $num = 0, $counter = 0) {
-              foreach ($subject as $test) {
-                  if ($test instanceof $type) {
-                      $counter++;
-                  }
-              }
+            foreach ($subject as $test) {
+                if ($test instanceof $type) {
+                    $counter++;
+                }
+            }
               return ($counter == $num);
           },
           'returnImplementationOf' => function ($subject, $interface) {
@@ -109,7 +108,7 @@ class TestSuiteSpec extends ObjectBehavior
     /**
      * Test that attaching a Test works.
      *
-     * @param  CollaboratorAlias  $test  This is a fake instance of the Test Abstract.
+     * @param CollaboratorAlias $test This is a fake instance of the Test Abstract.
      *
      * @return void
      */
@@ -124,7 +123,7 @@ class TestSuiteSpec extends ObjectBehavior
     /**
      * Test that one Test can be attached to the test suite.
      *
-     * @param  CollaboratorAlias  $test  This is a fake instance of the Test Abstract.
+     * @param CollaboratorAlias $test This is a fake instance of the Test Abstract.
      *
      * @return void
      */
@@ -139,7 +138,7 @@ class TestSuiteSpec extends ObjectBehavior
     /**
      * Test getTests returns all tests.
      *
-     * @param  CollaboratorAlias  $test  This is a fake instance of the Test Abstract.
+     * @param CollaboratorAlias $test This is a fake instance of the Test Abstract.
      *
      * @return void
      */
@@ -156,8 +155,8 @@ class TestSuiteSpec extends ObjectBehavior
     /**
      * Test that multiple classes can be attacked by passing the attach function an array with tests.
      *
-     * @param  CollaboratorAlias  $test1  This is a fake instance of the Test Abstract.
-     * @param  CollaboratorAlias  $test2  This is an other fake instance of the Test Abstract.
+     * @param CollaboratorAlias $test1 This is a fake instance of the Test Abstract.
+     * @param CollaboratorAlias $test2 This is an other fake instance of the Test Abstract.
      *
      * @return void
      */

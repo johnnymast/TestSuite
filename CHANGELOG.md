@@ -1,5 +1,6 @@
 ## 2.0
 
+- The average() method on the TestSuite class now returns the average score of all tests.
 - Attach() and Detach() now return $this on TestSuite so you can chain the function with other TestSuite functions.
 - Added a method of entering the answer of the user to the score increment.
 - You can now opt not to reset tests scores every time the suite runs.

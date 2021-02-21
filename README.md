@@ -9,6 +9,14 @@
 
 Redbox Testsuite allows you to batch process student like tests in a Suite of tests and collect the results from the suite.
 
+
+## Usage
+
+For the documentation, you can consult our beautiful [wiki](https://github.com/johnnymast/redbox-testsuite/wiki) and dive in directly
+by reading [Create your first TestSuite](https://github.com/johnnymast/redbox-testsuite/wiki/Create-your-first-TestSuite).
+
+
+
 ## Requirements
 
 The following PHP versions are supported.
@@ -22,12 +30,6 @@ The package can be installed using composer.
 ```bash
 composer require redbox/tracker
 ```
-
-## Documentation and Usage
-
-For the documentation, you can consult our beautiful [wiki](https://github.com/johnnymast/redbox-testsuite/wiki) and dive in directly 
-by reading [Create your first TestSuite](https://github.com/johnnymast/redbox-testsuite/wiki/Create-your-first-TestSuite).
-
 
 ## Author
 

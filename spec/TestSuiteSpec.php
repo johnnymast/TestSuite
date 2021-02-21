@@ -343,4 +343,22 @@ class TestSuiteSpec extends ObjectBehavior
     {
         $this->afterTest();
     }
+    
+    /**
+     * Test if the average function of the TestSuite works
+     * correctly.
+     *
+     * @return false
+     */
+    function it_should_have_a_working_average_function()
+    {
+        $test1 = MockableTestCase::createWith(3);
+        $test2 = MockableTestCase::createWith(3);
+        $test3 = MockableTestCase::createWith(3);
+        
+        $this->attach([$test1, $test2, $test3])
+            ->run(false);
+        
+        $this->average()->shouldReturn(3);
+    }
 }

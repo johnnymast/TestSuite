@@ -247,4 +247,15 @@ class TestSuite
     {
         return $this->tests;
     }
+    
+    /**
+     * Return the score average for
+     * this TestSuite.
+     *
+     * @return false|float|int
+     */
+    public function average()
+    {
+        return ($this->tests->count() > 0) ? ($this->getScore() / $this->tests->count()) : false;
+    }
 }

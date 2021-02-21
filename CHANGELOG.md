@@ -1,5 +1,6 @@
 ## 2.0
 
+- Attach() and Detach() now return $this on TestSuite so you can chain the function with other TestSuite functions.
 - Added a method of entering the answer of the user to the score increment.
 - You can now opt not to reset tests scores every time the suite runs.
 - Added the possibility to add a motivation with the score increment.

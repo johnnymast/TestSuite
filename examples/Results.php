@@ -44,11 +44,11 @@ $questions = [
 /**
  * Create a table for cli output.
  *
- * @param $answers The answers given in the test.
+ * @param array $answers The answers given in the test.
  *
  * @return string
  */
-function formatOutput($answers)
+function formatOutput(array $answers): string
 {
     $table_header = [];
     $table_rows = [];
@@ -171,8 +171,8 @@ class RealTest extends TestCase
 $test = new RealTest();
 $suite = new TestSuite();
 $suite->getContainer()->set('questions', $questions);
-$suite->attach(RealTest::class);
-$suite->run();
+$suite->attach($test)
+    ->run();
 
 
 $answers = current($suite->getAnswers());

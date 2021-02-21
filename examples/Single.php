@@ -88,7 +88,8 @@ $test = new SingleTestCase();
  * Create a test suite and attach the test.
  */
 $suite = new TestSuite();
-$suite->attach($test);
+$suite->attach($test)
+    ->run();
 
 /**
  * Score should be
@@ -100,7 +101,7 @@ $suite->attach($test);
  * ===================+
  * Total suite score 2
  */
-$suite->run();
+
 
 echo "Total suite score: ".$suite->getScore()."\n";
 echo "Percentage complete: ".$test->score->percentage()."%\n";

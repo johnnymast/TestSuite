@@ -63,9 +63,7 @@ $suite->attach(
             echo "Test case has run.\n";
         }
     }
-);
-
-$suite->run();
+)->run();
 
 /**
  * Output:

@@ -124,7 +124,7 @@ class Score
      *
      * @return int
      */
-    public function getIncrements()
+    public function getIncrements(): int
     {
         return $this->increments;
     }
@@ -164,7 +164,7 @@ class Score
      *
      * @return mixed
      */
-    public function getScore()
+    public function getScore(): int
     {
         return $this->score;
     }
@@ -182,7 +182,7 @@ class Score
     /**
      * Set to score to a given value.
      *
-     * @param int $value The value to set as the score.
+     * @param mixed $value The value to set as the score.
      *
      * @return void
      */

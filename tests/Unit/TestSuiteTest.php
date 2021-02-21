@@ -491,4 +491,23 @@ class TestSuiteTest extends PHPUNIT_TestCase
         
         $suite->run();
     }
+    
+    /**
+     * Test that the average of a suite is being returned.
+     *
+     * @return void
+     */
+    function test_average_should_return_the_correct_score_average()
+    {
+        $test1 = MockableTestCase::createWith(3);
+        $test2 = MockableTestCase::createWith(3);
+        $test3 = MockableTestCase::createWith(3);
+        
+        $suite = new TestSuite();
+        $suite->attach([$test1, $test2, $test3])
+            ->run(false);
+        
+        $expected = 3;
+        $this->assertEquals($expected, $suite->average());
+    }
 }

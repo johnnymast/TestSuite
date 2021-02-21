@@ -69,28 +69,68 @@ class TheTestCase extends TestCase
      *
      * @param ContainerInterface $container The storage container for the TestSuite.
      *
-     * @return bool
+     * @return void
      */
     public function run(ContainerInterface $container)
     {
         $this->checkAnswer(true);
         $this->checkAnswer(true);
         $this->checkAnswer(false);
-        
-        return true;
+    }
+}
+
+class TheSecondTestCase extends TestCase
+{
+    
+    /**
+     * Required function for tests indicating
+     * the minimal score for this test.
+     *
+     * @return int
+     */
+    public function minScore()
+    {
+        return 0;
+    }
+    
+    /**
+     * Required function for tests indicating
+     * the maximum score for this test.
+     *
+     * @return int
+     */
+    public function maxScore()
+    {
+        return 3;
+    }
+    
+    /**
+     * Run the test.
+     *
+     * @param ContainerInterface $container The storage container for the TestSuite.
+     *
+     * @return void
+     */
+    public function run(ContainerInterface $container)
+    {
+        $this->score->increment(1);
+        $this->score->increment(1);
+        $this->score->increment(1);
     }
 }
 
 /**
  * Instantiate the test.
  */
-$test = new TheTestCase();
+$test1 = new TheTestCase();
+$test2 = new TheSecondTestCase();
 
 /**
  * Create a test suite
  */
 $suite = new TestSuite();
-$suite->attach($test);
+$suite->attach([$test1, $test2])
+    ->run();
 
 /**
  * Score should be
@@ -102,10 +142,10 @@ $suite->attach($test);
  * ===================+
  * Total suite score 2
  */
-$suite->run();
 
 echo "Total suite score: ".$suite->getScore()."\n";
-echo "Percentage complete: ".$test->score->percentage()."\n";
+echo "Percentage complete Test 1: ".$test1->score->percentage()."\n";
+echo "Percentage complete Test 2: ".$test2->score->percentage()."\n";
 
 /**
  * Output:

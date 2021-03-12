@@ -29,7 +29,7 @@ abstract class TestCase
      * Instance that keeps track of the score
      * for this test.
      *
-     * @var Score
+     * @var ?Score
      */
     public ?Score $score = null;
 

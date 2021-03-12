@@ -28,7 +28,7 @@ The following PHP versions are supported.
 The package can be installed using composer.
 
 ```bash
-composer require redbox/tracker
+composer require redbox/testsuite
 ```
 
 ## Author

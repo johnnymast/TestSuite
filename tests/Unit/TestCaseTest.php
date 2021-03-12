@@ -20,7 +20,6 @@ namespace Redbox\Testsuite\Tests\Unit;
 use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
 use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
-use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\Tests\Assets\MockableTestCase;
 
 /**

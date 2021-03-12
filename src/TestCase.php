@@ -1,6 +1,6 @@
 <?php
 /**
- * Test.php
+ * TestCase.php
  *
  * The abstract class for Tests inside the TestSuite.
  *
@@ -11,7 +11,7 @@
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/redbox-testsuite
- * @since    GIT:1.0
+ * @since    1.0
  */
 
 namespace Redbox\Testsuite;

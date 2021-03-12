@@ -13,7 +13,7 @@
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/redbox-testsuite
- * @since    GIT:1.0
+ * @since    1.0
  */
 
 require __DIR__.'/../vendor/autoload.php';
@@ -28,28 +28,22 @@ $suite->attach(
      * Anonymous class
      */
     new class extends TestCase {
-    
+
         /**
-         * Required function for tests indicating
-         * the minimal score for this test.
+         * Tell the TesCase what the
+         * min reachable score is.
          *
-         * @return int
+         * @var int
          */
-        public function minScore(): int
-        {
-            return 0;
-        }
-    
+        protected int $minscore = 0;
+
         /**
-         * Required function for tests indicating
-         * the maximum score for this test.
+         * Tell the TesCase what the
+         * max reachable score is.
          *
-         * @return int
+         * @var int
          */
-        public function maxScore()
-        {
-            return 10;
-        }
+        protected int $maxscore = 10;
     
         /**
          * Run the test.

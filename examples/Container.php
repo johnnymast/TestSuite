@@ -13,7 +13,7 @@
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/redbox-testsuite
- * @since    GIT:1.0
+ * @since    1.0
  */
 
 require __DIR__.'/../vendor/autoload.php';
@@ -28,26 +28,21 @@ use Redbox\Testsuite\TestSuite;
 class MyFirstTestCase extends TestCase
 {
     /**
-     * Required function for tests indicating
-     * the minimal score for this test.
-     *
-     * @return int
-     */
-    public function minScore(): int
-    {
-        return 0;
-    }
-    
     /**
-     * Required function for tests indicating
-     * the maximum score for this test.
+     * Tell the TesCase what the
+     * min reachable score is.
      *
-     * @return int
+     * @var int
      */
-    public function maxScore(): int
-    {
-        return 10;
-    }
+    protected int $minscore = 0;
+
+    /**
+     * Tell the TesCase what the
+     * max reachable score is.
+     *
+     * @var int
+     */
+    protected int $maxscore = 10;
     
     /**
      * Demo function show how values are passed.

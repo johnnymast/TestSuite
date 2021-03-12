@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TestTest.php
+ * ScoreTest.php
  *
  * This test suite will test all Test Abstract related functions.
  *
@@ -18,7 +18,7 @@
 namespace Redbox\Testsuite\Tests\Unit;
 
 use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
-;
+
 use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestCase;

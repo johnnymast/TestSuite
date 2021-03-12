@@ -6,7 +6,7 @@
  * This middleware will intercept traffic from visitors to
  * your website.
  *
- * PHP version 7.2
+ * PHP version 7.4
  *
  * @category Core
  * @package  RedboxTestSuite

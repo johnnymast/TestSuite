@@ -17,8 +17,9 @@
 
 namespace Redbox\Testsuite\Tests\Assets;
 
-use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
+use Redbox\Testsuite\Container;
+use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\Test;
 
 /**
@@ -26,22 +27,24 @@ use Redbox\Testsuite\Test;
  *
  * @package Redbox\Testsuite\Tests\Assets
  */
-class MockableTest extends Test
+class MockableTest extends TestCase
 {
     /**
-     * Minimal score.
+     * Tell the TesCase what the
+     * min reachable score is.
      *
      * @var int
      */
-    public int $min = 0;
-    
+    protected int $minscore = 0;
+
     /**
-     * Maximal score.
+     * Tell the TesCase what the
+     * max reachable score is.
      *
      * @var int
      */
-    public int $max = 0;
-    
+    protected int $maxscore = 10;
+
     /**
      * Create an instance with a score min value and max value.
      *
@@ -56,8 +59,8 @@ class MockableTest extends Test
         $instance = self::create();
         $instance->score->setScore($score);
         
-        $instance->min = $min;
-        $instance->max = $max;
+        $instance->minscore = $min;
+        $instance->maxscore = $max;
         
         return $instance;
     }
@@ -71,29 +74,7 @@ class MockableTest extends Test
     {
         return new static();
     }
-    
-    /**
-     * Return the minimal amount of
-     * points the test can score.
-     *
-     * @return mixed
-     */
-    public function minScore()
-    {
-        return $this->min;
-    }
-    
-    /**
-     * Return the maximum amount of
-     * points the test can score.
-     *
-     * @return mixed
-     */
-    public function maxScore()
-    {
-        return $this->max;
-    }
-    
+
     /**
      * Run the test.
      *

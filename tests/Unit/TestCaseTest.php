@@ -12,7 +12,7 @@
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/redbox-testsuite
- * @since    GIT:1.0
+ * @since    1.0
  */
 
 namespace Redbox\Testsuite\Tests\Unit;
@@ -21,8 +21,7 @@ use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
 use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestCase;
-
-;
+use Redbox\Testsuite\Tests\Assets\MockableTestCase;
 
 /**
  * Class TestTest
@@ -54,26 +53,22 @@ class TestCaseTest extends PHPUNIT_TestCase
     protected function setUp(): void
     {
         $this->testInstance = new class extends \Redbox\Testsuite\TestCase {
-            
+
             /**
-             * Define the min score for this test.
+             * Tell the TesCase what the
+             * min reachable score is.
              *
-             * @return int
+             * @var int
              */
-            public function minScore()
-            {
-                return 0;
-            }
-            
+            protected int $minscore = 0;
+
             /**
-             * Define the max score for this test.
+             * Tell the TesCase what the
+             * max reachable score is.
              *
-             * @return int
+             * @var int
              */
-            public function maxScore()
-            {
-                return 4;
-            }
+            protected int $maxscore = 4;
             
             /**
              * Fake method for testing.
@@ -254,6 +249,18 @@ class TestCaseTest extends PHPUNIT_TestCase
     {
         $this->assertEquals($this->testInstance, $this->testInstance->score->getTest());
     }
+
+    /**
+     * Test that afterCreation() is being called.
+     *
+     * @return void
+     * @throws \ReflectionException
+     */
+    public function test_if_min_or_maxscore_are_not_defined_we_get_a_exception()
+    {
+        $this->expectException(\LogicException::class);
+        $this->getMockBuilder(\Redbox\Testsuite\TestCase::class)->getMock();
+    }
     
     /**
      * Test that afterCreation() is being called.
@@ -263,15 +270,15 @@ class TestCaseTest extends PHPUNIT_TestCase
      */
     public function test_aftercreation_is_being_called()
     {
-        $mock = $this->getMockBuilder(TestCase::class)
+        $mock = $this->getMockBuilder(MockableTestCase::class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['afterCreation', 'minScore', 'maxScore', 'run'])
+            ->onlyMethods(['afterCreation', 'run'])
             ->getMock();
         
         $mock->expects($this->once())
             ->method('afterCreation');
         
-        $reflectedClass = new \ReflectionClass(TestCase::class);
+        $reflectedClass = new \ReflectionClass(\Redbox\Testsuite\TestCase::class);
         $constructor = $reflectedClass->getConstructor();
         $constructor->invoke($mock);
     }

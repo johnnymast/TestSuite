@@ -17,21 +17,23 @@
 
 namespace Redbox\Testsuite\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
+;
 use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
+use Redbox\Testsuite\TestCase;
 
 /**
  * Class TestTest
  *
  * @package Redbox\Testsuite\Tests\Unit
  */
-class TestTest extends TestCase
+class ScoreTest extends PHPUNIT_TestCase
 {
     /**
      * The test instance used for all the tests.
      *
-     * @var \Redbox\Testsuite\Test
+     * @var TestCase
      */
     protected $testInstance;
     
@@ -50,27 +52,23 @@ class TestTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->testInstance = new class extends \Redbox\Testsuite\Test {
-            
+        $this->testInstance = new class extends TestCase {
+
             /**
-             * Define the min score for this test.
+             * Tell the TesCase what the
+             * min reachable score is.
              *
-             * @return int
+             * @var int
              */
-            public function minScore()
-            {
-                return 0;
-            }
-            
+            protected int $minscore = 0;
+
             /**
-             * Define the max score for this test.
+             * Tell the TesCase what the
+             * max reachable score is.
              *
-             * @return int
+             * @var int
              */
-            public function maxScore()
-            {
-                return 4;
-            }
+            protected int $maxscore = 4;
             
             /**
              * Fake method for testing.
@@ -85,7 +83,7 @@ class TestTest extends TestCase
             /**
              * Run the test.
              *
-             * @param  ContainerInterface  $container  The storage container for the TestSuite.
+             * @param ContainerInterface $container The storage container for the TestSuite.
              *
              * @return bool
              */

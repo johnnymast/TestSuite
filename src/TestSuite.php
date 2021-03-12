@@ -13,7 +13,7 @@
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/redbox-testsuite
- * @since    GIT:1.0
+ * @since    1.0
  */
 
 namespace Redbox\Testsuite;
@@ -29,7 +29,7 @@ class TestSuite
      * @var \SplObjectStorage
      */
     protected ?\SplObjectStorage $tests = null;
-    
+
     /**
      * Storage container to contain information
      * for the tests.
@@ -37,24 +37,24 @@ class TestSuite
      * @var ContainerInterface|null
      */
     protected ?ContainerInterface $container = null;
-    
+
     /**
      * Test Score counter.
      *
      * @var int|double
      */
     protected $score = 0;
-    
+
     /**
      * TestSuite constructor.
      */
     public function __construct()
     {
         $this->tests = new \SplObjectStorage;
-        
+
         $this->setContainer(new Container());
     }
-    
+
     /**
      * This function will be called before every
      * test.
@@ -65,7 +65,7 @@ class TestSuite
     {
         // Overwrite at will
     }
-    
+
     /**
      * This function will be called after every
      * test.
@@ -76,20 +76,21 @@ class TestSuite
     {
         // Overwrite at will
     }
-    
-    
+
+
     /**
      * Set he storage container for the test suite.
      *
      * @param ContainerInterface $container The storage container for the test suite.
      *
-     * @return void
+     * @return $this
      */
     public function setContainer(ContainerInterface $container)
     {
         $this->container = $container;
+        return $this;
     }
-    
+
     /**
      * Return the storage container.
      *
@@ -99,7 +100,7 @@ class TestSuite
     {
         return $this->container;
     }
-    
+
     /**
      * Reset the score and rewind
      * the tests storage.
@@ -109,14 +110,14 @@ class TestSuite
     public function reset()
     {
         $this->score = 0;
-        
+
         if ($this->tests->count() > 0) {
             foreach ($this->tests as $test) {
                 $test->score->reset();
             }
         }
     }
-    
+
     /**
      * Attach a Test or an array of
      * Tests to the TestSuite.
@@ -133,23 +134,23 @@ class TestSuite
             }
         } else {
             $test = $info;
-            
+
             if (is_string($info) === true && class_exists($info) === true) {
                 $test = new $info();
             }
-            
+
             if (is_subclass_of($test, TestCase::class) === false) {
                 throw new \InvalidArgumentException('Test does not extend Test abstract class.');
             }
-            
-            $test->setName(get_class($test).'_'.$this->tests->count());
-            
+
+            $test->setName(get_class($test) . '_' . $this->tests->count());
+
             $this->tests->attach($test);
         }
-        
+
         return $this;
     }
-    
+
     /**
      * Detach a given test from the
      * TestSuite.
@@ -163,7 +164,7 @@ class TestSuite
         $this->tests->detach($test);
         return $this;
     }
-    
+
     /**
      * Check to see if the TestSuite has a given
      * test inside.
@@ -176,7 +177,7 @@ class TestSuite
     {
         return $this->tests->contains($test);
     }
-    
+
     /**
      * Run the tests
      *
@@ -187,30 +188,30 @@ class TestSuite
     public function run($reset = true): int
     {
         $tests_run = 0;
-        
+
         /**
          * Reset the test results
          */
         if ($reset) {
             $this->reset();
         }
-        
+
         $container = $this->getContainer();
-        
+
         foreach ($this->tests as $test) {
             $this->beforeTest();
-            
+
             $test->run($container);
-            
+
             $this->afterTest();
-            
+
             $this->score += $test->score->getScore();
             $tests_run++;
         }
-        
+
         return $tests_run;
     }
-    
+
     /**
      * Return the answers/motivations from all tests.
      *
@@ -224,10 +225,10 @@ class TestSuite
                 $info[$test->getName()] = $test->score->getScoreInfo();
             }
         }
-        
+
         return $info;
     }
-    
+
     /**
      * Return the test suite score.
      *
@@ -237,7 +238,7 @@ class TestSuite
     {
         return $this->score;
     }
-    
+
     /**
      * Return all tests.
      *
@@ -247,7 +248,7 @@ class TestSuite
     {
         return $this->tests;
     }
-    
+
     /**
      * Return the score average for
      * this TestSuite.

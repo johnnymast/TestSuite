@@ -12,7 +12,7 @@
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/redbox-testsuite
- * @since    GIT:1.0
+ * @since    1.0
  */
 
 namespace Redbox\Testsuite\Tests\Unit;
@@ -23,8 +23,6 @@ use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\Tests\Assets\MockableContainer;
 use Redbox\Testsuite\Tests\Assets\MockableTestCase;
 use Redbox\Testsuite\TestSuite;
-
-;
 
 /**
  * Class TestSuiteTest

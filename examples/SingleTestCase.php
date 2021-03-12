@@ -1,39 +1,49 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+/**
+ * Single.php
+ *
+ * This file demonstrate how to add a test to the test suite
+ * and run the test.
+ *
+ * PHP version 7.4
+ *
+ * @category Examples
+ * @package  RedboxTestSuite
+ * @author   Johnny Mast <mastjohnny@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     https://github.com/johnnymast/redbox-testsuite
+ * @since    1.0
+ */
+
+require __DIR__ . '/../vendor/autoload.php';
 
 use Redbox\Testsuite\Interfaces\ContainerInterface;
+use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\TestSuite;
-use Redbox\Testsuite\Test;
 
 /**
- * JUST A SPEC DEMO FOR MY SELF
+ * Class SingleTestCase
  */
-class SingleTest extends Test
+class SingleTestCase extends TestCase
 {
-    
+
     /**
-     * Required function for tests indicating
-     * the minimal score for this test.
+     * Tell the TesCase what the
+     * min reachable score is.
      *
-     * @return int
+     * @var int
      */
-    public function minScore(): int
-    {
-        return 0;
-    }
-    
+    protected int $minscore = 0;
+
     /**
-     * Required function for tests indicating
-     * the maximum score for this test.
+     * Tell the TesCase what the
+     * max reachable score is.
      *
-     * @return int
+     * @var int
      */
-    public function maxScore(): int
-    {
-        return 4;
-    }
-    
+    protected int $maxscore = 4;
+
     /**
      * Demo function for answering demo questions.
      *
@@ -47,7 +57,7 @@ class SingleTest extends Test
             $this->score->increment(1);
         }
     }
-    
+
     /**
      * Run the test.
      *
@@ -66,13 +76,14 @@ class SingleTest extends Test
 /**
  * Instantiate the test.
  */
-$test = new SingleTest();
+$test = new SingleTestCase();
 
 /**
  * Create a test suite and attach the test.
  */
 $suite = new TestSuite();
-$suite->attach($test);
+$suite->attach($test)
+    ->run();
 
 /**
  * Score should be
@@ -84,7 +95,7 @@ $suite->attach($test);
  * ===================+
  * Total suite score 2
  */
-$suite->run();
 
-echo "Total suite score: ".$suite->getScore()."\n";
-echo "Percentage complete: ".$test->score->percentage()."%\n";
+
+echo "Total suite score: " . $suite->getScore() . "\n";
+echo "Percentage complete: " . $test->score->percentage() . "%\n";

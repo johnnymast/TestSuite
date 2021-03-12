@@ -25,7 +25,7 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_take_at_test()
     {
-        $test = $this->createMock(Test::class);
+        $test = $this->createMock(\Redbox\Testsuite\TestCase::class);
         $suite = new TestSuite();
         $suite->attach($test);
         
@@ -37,8 +37,8 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_take_multiple_tests()
     {
-        $test1 = $this->createMock(Test::class);
-        $test2 = $this->createMock(Test::class);
+        $test1 = $this->createMock(\Redbox\Testsuite\TestCase::class);
+        $test2 = $this->createMock(\Redbox\Testsuite\TestCase::class);
         $suite = new TestSuite();
         $suite->attach([$test1, $test2]);
         
@@ -51,7 +51,7 @@ class TestSuiteTest extends TestCase
      */
     public function test_it_can_detach_a_test()
     {
-        $test = $this->createMock(Test::class);
+        $test = $this->createMock(\Redbox\Testsuite\TestCase::class);
         $suite = new TestSuite();
         $suite->attach($test);
         
@@ -64,7 +64,6 @@ class TestSuiteTest extends TestCase
     /**
      * Test that the run function will return 1 test
      * for being run.
-     *
      */
     function test_it_can_run_once()
     {
@@ -104,9 +103,9 @@ class TestSuiteTest extends TestCase
         
         $suite = new TestSuite();
         $suite->attach($test);
-        $suite->run();
+        $suite->run(false);
         
-        $actual = $suite->score();
+        $actual = $suite->getScore();
         $expected = 4;
         $this->assertEquals($expected, $actual);
     }
@@ -121,9 +120,9 @@ class TestSuiteTest extends TestCase
         
         $suite = new TestSuite();
         $suite->attach([$test1, $test2]);
-        $suite->run();
+        $suite->run(false);
         
-        $actual = $suite->score();
+        $actual = $suite->getScore();
         $expected = 9;
         $this->assertEquals($expected, $actual);
     }

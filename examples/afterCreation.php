@@ -17,7 +17,7 @@
  * @since    GIT:1.0
  */
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestCase;
@@ -28,7 +28,23 @@ use Redbox\Testsuite\TestSuite;
  */
 class AfterCreationTest extends TestCase
 {
-    
+
+    /**
+     * Tell the TesCase what the
+     * min reachable score is.
+     *
+     * @var int
+     */
+    protected int $minscore = 0;
+
+    /**
+     * Tell the TesCase what the
+     * max reachable score is.
+     *
+     * @var int
+     */
+    protected int $maxscore = 10;
+
     /**
      * This array will be filled with answers
      * inside afterCreation.
@@ -36,29 +52,7 @@ class AfterCreationTest extends TestCase
      * @var array
      */
     protected $answers = [];
-    
-    /**
-     * Required function for tests indicating
-     * the minimal score for this test.
-     *
-     * @return int
-     */
-    public function minScore(): int
-    {
-        return 0;
-    }
-    
-    /**
-     * Required function for tests indicating
-     * the maximum score for this test.
-     *
-     * @return int
-     */
-    public function maxScore(): int
-    {
-        return 4;
-    }
-    
+
     /**
      * This function is overwritten from Redbox\Testsuite\TestCase
      * and is being used to prepare information for the test.
@@ -69,7 +63,7 @@ class AfterCreationTest extends TestCase
     {
         $this->answers = [true, true, false];
     }
-    
+
     /**
      * Demo function for answering demo questions.
      *
@@ -83,7 +77,7 @@ class AfterCreationTest extends TestCase
             $this->score->increment(1);
         }
     }
-    
+
     /**
      * Run the test.
      *
@@ -123,5 +117,5 @@ $suite->attach($test)
  */
 
 
-echo "Total suite score: ".$suite->getScore()."\n";
-echo "Percentage complete: ".$test->score->percentage()."%\n";
+echo "Total suite score: " . $suite->getScore() . "\n";
+echo "Percentage complete: " . $test->score->percentage() . "%\n";

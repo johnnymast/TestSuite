@@ -25,7 +25,6 @@ use Redbox\Testsuite\Interfaces\ContainerInterface;
  */
 abstract class TestCase
 {
-    
     /**
      * Instance that keeps track of the score
      * for this test.
@@ -33,14 +32,14 @@ abstract class TestCase
      * @var Score
      */
     public ?Score $score = null;
-    
+
     /**
      * The name of this TestCase.
      *
      * @var string
      */
     private string $name = '';
-    
+
     /**
      * Test constructor.
      *
@@ -48,10 +47,23 @@ abstract class TestCase
      */
     final function __construct()
     {
+        if (!isset($this->minscore))
+            throw new \LogicException(
+                get_class($this) . ' must have property $minscore to indicate the lowest
+            reachable score.'
+            );
+
+        if (!isset($this->maxscore))
+            throw new \LogicException(
+                get_class($this) . ' must have property $maxscore to indicate the highest
+             reachable score.'
+            );
+
+
         $this->score = new Score($this);
         $this->afterCreation();
     }
-    
+
     /**
      * This function will be called from within the constructor.
      * This allows you to setup some data from within the
@@ -62,7 +74,7 @@ abstract class TestCase
     {
         // Overwrite at will
     }
-    
+
     /**
      * Return the name of the test.
      *
@@ -72,7 +84,7 @@ abstract class TestCase
     {
         return $this->name;
     }
-    
+
     /**
      * Set the test name.
      *
@@ -84,23 +96,29 @@ abstract class TestCase
     {
         $this->name = $name;
     }
-    
-    /**
-     * Tests must implement this method to indicate
-     * the minimum score this test can reach.
-     *
-     * @return mixed
-     */
-    abstract public function minScore();
-    
+
     /**
      * Tests must implement this method to indicate
      * the maximum score this test can reach.
      *
-     * @return mixed
+     * @return int
      */
-    abstract public function maxScore();
-    
+    public function minScore(): int
+    {
+        return $this->minscore;
+    }
+
+    /**
+     * Tests must implement this method to indicate
+     * the maximum score this test can reach.
+     *
+     * @return int
+     */
+    public function maxScore(): int
+    {
+        return $this->maxscore;
+    }
+
     /**
      * Tests must implement this method to start
      * running their tests.

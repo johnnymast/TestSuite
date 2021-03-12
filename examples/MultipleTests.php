@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Multiple.php
+ * MultipleTests.php
  *
  * This file demonstrate how to add multiple tests to the test suite
  * and run the tests.
@@ -13,43 +13,37 @@
  * @author   Johnny Mast <mastjohnny@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/johnnymast/redbox-testsuite
- * @since    GIT:1.0
+ * @since    1.0
  */
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Redbox\Testsuite\Interfaces\ContainerInterface;
-use Redbox\Testsuite\TestSuite;
 use Redbox\Testsuite\TestCase;
+use Redbox\Testsuite\TestSuite;
 
 /**
- * Class TheTestCase
+ * Class TheFirstTestCase
  */
-class TheTestCase extends TestCase
+class TheFirstTestCase extends TestCase
 {
-    
+
     /**
-     * Required function for tests indicating
-     * the minimal score for this test.
+     * Tell the TesCase what the
+     * min reachable score is.
      *
-     * @return int
+     * @var int
      */
-    public function minScore(): int
-    {
-        return 0;
-    }
-    
+    protected int $minscore = 0;
+
     /**
-     * Required function for tests indicating
-     * the maximum score for this test.
+     * Tell the TesCase what the
+     * max reachable score is.
      *
-     * @return int
+     * @var int
      */
-    public function maxScore(): int
-    {
-        return 4;
-    }
-    
+    protected int $maxscore = 4;
+
     /**
      * Demo function for answering demo questions.
      *
@@ -63,7 +57,7 @@ class TheTestCase extends TestCase
             $this->score->increment(1);
         }
     }
-    
+
     /**
      * Run the test.
      *
@@ -81,29 +75,23 @@ class TheTestCase extends TestCase
 
 class TheSecondTestCase extends TestCase
 {
-    
+
     /**
-     * Required function for tests indicating
-     * the minimal score for this test.
+     * Tell the TesCase what the
+     * min reachable score is.
      *
-     * @return int
+     * @var int
      */
-    public function minScore()
-    {
-        return 0;
-    }
-    
+    protected int $minscore = 0;
+
     /**
-     * Required function for tests indicating
-     * the maximum score for this test.
+     * Tell the TesCase what the
+     * max reachable score is.
      *
-     * @return int
+     * @var int
      */
-    public function maxScore()
-    {
-        return 3;
-    }
-    
+    protected int $maxscore = 3;
+
     /**
      * Run the test.
      *
@@ -122,7 +110,7 @@ class TheSecondTestCase extends TestCase
 /**
  * Instantiate the test.
  */
-$test1 = new TheTestCase();
+$test1 = new TheFirstTestCase();
 $test2 = new TheSecondTestCase();
 
 /**
@@ -143,13 +131,14 @@ $suite->attach([$test1, $test2])
  * Total suite score 2
  */
 
-echo "Total suite score: ".$suite->getScore()."\n";
-echo "Percentage complete Test 1: ".$test1->score->percentage()."\n";
-echo "Percentage complete Test 2: ".$test2->score->percentage()."\n";
+echo "Total suite score: " . $suite->getScore() . "\n";
+echo "Percentage complete Test 1: " . $test1->score->percentage() . "\n";
+echo "Percentage complete Test 2: " . $test2->score->percentage() . "\n";
 
 /**
  * Output:
  *
- * Total suite score: 2
- * Percentage complete: 50
+ * Total suite score: 5
+ * Percentage complete Test 1: 50
+ * Percentage complete Test 2: 100
  */

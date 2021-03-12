@@ -33,14 +33,14 @@ class MockableTestCase extends TestCase
      *
      * @var int
      */
-    public int $min = 0;
+    public int $minscore = 0;
     
     /**
      * Maximal score.
      *
      * @var int
      */
-    public int $max = 0;
+    public int $maxscore = 0;
     
     /**
      * Create an instance with a score min value and max value.
@@ -56,8 +56,8 @@ class MockableTestCase extends TestCase
         $instance = self::create();
         $instance->score->setScore($score);
         
-        $instance->min = $min;
-        $instance->max = $max;
+        $instance->minscore = $min;
+        $instance->maxscore = $max;
         
         return $instance;
     }
@@ -71,29 +71,7 @@ class MockableTestCase extends TestCase
     {
         return new static();
     }
-    
-    /**
-     * Return the minimal amount of
-     * points the test can score.
-     *
-     * @return mixed
-     */
-    public function minScore()
-    {
-        return $this->min;
-    }
-    
-    /**
-     * Return the maximum amount of
-     * points the test can score.
-     *
-     * @return mixed
-     */
-    public function maxScore()
-    {
-        return $this->max;
-    }
-    
+
     /**
      * Run the test.
      *

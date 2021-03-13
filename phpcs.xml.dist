@@ -38,6 +38,8 @@
     <rule ref="Squiz.PHP.NonExecutableCode"/>
     <file>src</file>
     <file>tests</file>
+    <file>spec</file>
+    <file>examples</file>
 
      <arg name="basepath" value="."/>
         <arg name="colors"/>

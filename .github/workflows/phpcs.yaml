@@ -1,4 +1,4 @@
-name: "PHP Codesniffer"
+name: Phpcs
 on: [push]
 
 jobs:

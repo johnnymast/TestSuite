@@ -50,11 +50,13 @@ abstract class TestCase
     {
         if (!isset($this->minscore))
             throw new \LogicException(
-                get_class($this) . ' must have property $minscore to indicate the lowest reachable score.');
+                get_class($this) . ' must have property $minscore to indicate the lowest reachable score.'
+            );
 
         if (!isset($this->maxscore))
             throw new \LogicException(
-                get_class($this) . ' must have property $maxscore to indicate the highestreachable score.');
+                get_class($this) . ' must have property $maxscore to indicate the highestreachable score.'
+            );
 
 
         $this->score = new Score($this);

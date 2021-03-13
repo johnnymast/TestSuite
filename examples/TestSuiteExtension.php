@@ -22,7 +22,8 @@ use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\TestSuite;
 
-class TestSuiteExtension extends  TestSuite {
+class TestSuiteExtension extends TestSuite
+{
 
     /**
      * This function will be called before every
@@ -47,7 +48,8 @@ class TestSuiteExtension extends  TestSuite {
     }
 }
 
-class FirstTest extends TestCase {
+class FirstTest extends TestCase
+{
     /**
      * Tell the TestCase what the
      * min reachable score is.
@@ -73,11 +75,12 @@ class FirstTest extends TestCase {
      */
     public function run(ContainerInterface $container)
     {
-       // Nothing here
+        // Nothing here
     }
 }
 
-class SecondTest extends FirstTest {
+class SecondTest extends FirstTest
+{
 
 }
 

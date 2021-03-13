@@ -169,7 +169,6 @@ $suite->getContainer()->set('questions', $questions);
 $suite->attach($test)
     ->run();
 
-
 $answers = current($suite->getAnswers());
 
 echo formatOutput($answers);

@@ -51,7 +51,7 @@ class MyFirstTestCase extends TestCase
      *
      * @return void
      */
-    protected function say(string $word)
+    protected function say(string $word): void
     {
         echo $word."\n";
     }

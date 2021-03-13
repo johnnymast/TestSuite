@@ -97,26 +97,20 @@ function formatOutput(array $answers): string
 class RealTest extends TestCase
 {
     /**
-     * Required function for tests indicating
-     * the minimal score for this test.
+     * Tell the TesCase what the
+     * min reachable score is.
      *
-     * @return int
+     * @var int
      */
-    public function minScore(): int
-    {
-        return 0;
-    }
-    
+    protected int $minscore = 0;
+
     /**
-     * Required function for tests indicating
-     * the maximum score for this test.
+     * Tell the TesCase what the
+     * max reachable score is.
      *
-     * @return int
+     * @var int
      */
-    public function maxScore(): int
-    {
-        return 2;
-    }
+    protected int $maxscore = 2;
     
     /**
      * Read commandline input.
@@ -126,7 +120,7 @@ class RealTest extends TestCase
      *
      * @return false|string
      */
-    private function readline($prompt = '', $answer = '')
+    private function readline($prompt = '', $answer = ''): string
     {
         return readline($prompt.' ('.$answer.'): ');
     }
@@ -138,7 +132,7 @@ class RealTest extends TestCase
      *
      * @return void
      */
-    private function askQuestion($question)
+    private function askQuestion($question): void
     {
         $text = $question['text'];
         $answer = $question['answer'];

@@ -32,7 +32,7 @@ class ContainerTest extends PHPUNIT_TestCase
      *
      * @var Container
      */
-    protected $container;
+    protected Container $container;
     
     /**
      * This function will be executed before all test functions.
@@ -50,7 +50,7 @@ class ContainerTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_get_and_set_should_work_correctly()
+    public function test_get_and_set_should_work_correctly(): void
     {
         $this->container->set('__FIRST__', 'second');
         
@@ -65,7 +65,7 @@ class ContainerTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_get_should_return_false_for_nonexisting_key()
+    public function test_get_should_return_false_for_nonexisting_key(): void
     {
         $this->assertFalse($this->container->get('__NON_EXISTING_KEY'));
     }
@@ -75,7 +75,7 @@ class ContainerTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_has_works_correctly()
+    public function test_has_works_correctly(): void
     {
         $this->container->set('__SECOND__', 'some value');
         $this->assertTrue($this->container->has('__SECOND__'));
@@ -86,7 +86,7 @@ class ContainerTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    function test_forget_works_correctly()
+    function test_forget_works_correctly(): void
     {
         $this->container->set('__VAL__', 'some other value');
         

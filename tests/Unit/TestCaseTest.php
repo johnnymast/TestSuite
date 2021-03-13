@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TestTest.php
+ * TestCaseTest.php
  *
  * This test suite will test all Test Abstract related functions.
  *
@@ -32,7 +32,7 @@ class TestCaseTest extends PHPUNIT_TestCase
     /**
      * The test instance used for all the tests.
      *
-     * @var \Redbox\Testsuite\TestCase
+     * @var TestCase
      */
     protected $testInstance;
     
@@ -41,7 +41,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @var \Redbox\Testsuite\Container
      */
-    protected $testContainer;
+    protected Container $testContainer;
     
     /**
      * This function will be executed before all test functions.
@@ -74,7 +74,7 @@ class TestCaseTest extends PHPUNIT_TestCase
              *
              * @return void
              */
-            private function executeTest1()
+            private function executeTest1(): void
             {
                 $this->score->increment(2);
             }
@@ -101,7 +101,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_score_is_0_by_default()
+    public function test_score_is_0_by_default(): void
     {
         $this->assertEquals(0, $this->testInstance->score->getScore());
     }
@@ -111,7 +111,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_set_and_get_score_work_correct()
+    public function test_set_and_get_score_work_correct(): void
     {
         $this->testInstance->score->setScore(5);
         
@@ -123,7 +123,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_core_can_be_incremented()
+    public function test_core_can_be_incremented(): void
     {
         $this->testInstance->score->setScore(5);
         $this->testInstance->score->increment(5);
@@ -135,7 +135,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_run_could_increment_score()
+    public function test_run_could_increment_score(): void
     {
         $this->testInstance->run($this->testContainer);
         $this->assertEquals(2, $this->testInstance->score->getScore());
@@ -146,7 +146,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_score_knows_the_min_score()
+    public function test_score_knows_the_min_score(): void
     {
         $this->assertEquals(0, $this->testInstance->score->minScore());
     }
@@ -156,7 +156,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_score_knows_the_max_score()
+    public function test_score_knows_the_max_score(): void
     {
         $this->assertEquals(4, $this->testInstance->score->maxScore());
     }
@@ -166,7 +166,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_average_can_be_correctly_calculated()
+    public function test_average_can_be_correctly_calculated(): void
     {
         $this->testInstance->score->increment(5);
         $this->testInstance->score->increment(5);
@@ -179,7 +179,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_average_does_not_divide_by_zero_increments_but_returns_false()
+    public function test_average_does_not_divide_by_zero_increments_but_returns_false(): void
     {
         $this->assertEquals(0, $this->testInstance->score->average());
         $this->assertFalse($this->testInstance->score->average());
@@ -190,7 +190,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_percentage_is_calculated_correctly()
+    public function test_percentage_is_calculated_correctly(): void
     {
         /**
          * After running the score will be 2 + 1 = 4.
@@ -206,7 +206,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_increments_is_calculated_correctly()
+    public function test_increments_is_calculated_correctly(): void
     {
         $this->testInstance->score->increment(2);
         $this->testInstance->score->increment(2);
@@ -218,7 +218,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_percentage_should_be_0_without_increments()
+    public function test_percentage_should_be_0_without_increments(): void
     {
         $this->assertEquals(0, $this->testInstance->score->percentage());
     }
@@ -228,7 +228,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_the_reset_function_resets_to_default()
+    public function test_the_reset_function_resets_to_default(): void
     {
         $this->testInstance->score->increment(11);
         $this->testInstance->score->increment(11);
@@ -244,7 +244,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_score_gettest_returns_the_test()
+    public function test_score_gettest_returns_the_test(): void
     {
         $this->assertEquals($this->testInstance, $this->testInstance->score->getTest());
     }
@@ -255,7 +255,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      * @return void
      * @throws \ReflectionException
      */
-    public function test_if_min_or_maxscore_are_not_defined_we_get_a_exception()
+    public function test_if_min_or_maxscore_are_not_defined_we_get_a_exception(): void
     {
         $this->expectException(\LogicException::class);
         $this->getMockBuilder(\Redbox\Testsuite\TestCase::class)->getMock();
@@ -267,7 +267,7 @@ class TestCaseTest extends PHPUNIT_TestCase
      * @return void
      * @throws \ReflectionException
      */
-    public function test_aftercreation_is_being_called()
+    public function test_aftercreation_is_being_called(): void
     {
         $mock = $this->getMockBuilder(MockableTestCase::class)
             ->disableOriginalConstructor()

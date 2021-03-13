@@ -68,7 +68,7 @@ class Score
      *
      * @return void
      */
-    public function reset()
+    public function reset(): void
     {
         $this->score = $this->minScore();
         $this->increments = 0;
@@ -84,7 +84,7 @@ class Score
      *
      * @return void
      */
-    public function increment($value, $motivation = '', $answer = '')
+    public function increment($value, $motivation = '', $answer = ''): void
     {
         $this->score += $value;
         $this->results[$this->increments] = [
@@ -186,7 +186,7 @@ class Score
      *
      * @return void
      */
-    public function setScore($value)
+    public function setScore($value): void
     {
         $this->score = $value;
     }

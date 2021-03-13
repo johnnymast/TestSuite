@@ -51,7 +51,7 @@ class SingleTestCase extends TestCase
      *
      * @return void
      */
-    protected function checkAnswer(bool $correct)
+    protected function checkAnswer(bool $correct): void
     {
         if ($correct) {
             $this->score->increment(1);

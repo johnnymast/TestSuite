@@ -42,7 +42,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @var \Redbox\Testsuite\Container
      */
-    protected $testContainer;
+    protected Container $testContainer;
     
     /**
      * This function will be executed before all test functions.
@@ -75,7 +75,7 @@ class ScoreTest extends PHPUNIT_TestCase
              *
              * @return void
              */
-            private function executeTest1()
+            private function executeTest1(): void
             {
                 $this->score->increment(2);
             }
@@ -102,7 +102,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_score_is_0_by_default()
+    public function test_score_is_0_by_default(): void
     {
         $this->assertEquals(0, $this->testInstance->score->getScore());
     }
@@ -112,7 +112,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_set_and_get_score_work_correct()
+    public function test_set_and_get_score_work_correct(): void
     {
         $this->testInstance->score->setScore(5);
         
@@ -124,7 +124,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_core_can_be_incremented()
+    public function test_core_can_be_incremented(): void
     {
         $this->testInstance->score->setScore(5);
         $this->testInstance->score->increment(5);
@@ -136,7 +136,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_run_could_increment_score()
+    public function test_run_could_increment_score(): void
     {
         $this->testInstance->run($this->testContainer);
         $this->assertEquals(2, $this->testInstance->score->getScore());
@@ -147,7 +147,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_score_knows_the_min_score()
+    public function test_score_knows_the_min_score(): void
     {
         $this->assertEquals(0, $this->testInstance->score->minScore());
     }
@@ -157,7 +157,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_score_knows_the_max_score()
+    public function test_score_knows_the_max_score(): void
     {
         $this->assertEquals(4, $this->testInstance->score->maxScore());
     }
@@ -167,7 +167,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_average_can_be_correctly_calculated()
+    public function test_average_can_be_correctly_calculated(): void
     {
         $this->testInstance->score->increment(5);
         $this->testInstance->score->increment(5);
@@ -180,7 +180,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_average_does_not_divide_by_zero_increments_but_returns_false()
+    public function test_average_does_not_divide_by_zero_increments_but_returns_false(): void
     {
         $this->assertEquals(0, $this->testInstance->score->average());
         $this->assertFalse($this->testInstance->score->average());
@@ -191,7 +191,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_percentage_is_calculated_correctly()
+    public function test_percentage_is_calculated_correctly(): void
     {
         /**
          * After running the score will be 2 + 1 = 4.
@@ -207,7 +207,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_increments_is_calculated_correctly()
+    public function test_increments_is_calculated_correctly(): void
     {
         $this->testInstance->score->increment(2);
         $this->testInstance->score->increment(2);
@@ -219,7 +219,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_percentage_should_be_0_without_increments()
+    public function test_percentage_should_be_0_without_increments(): void
     {
         $this->assertEquals(0, $this->testInstance->score->percentage());
     }
@@ -229,7 +229,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_the_reset_function_resets_to_default()
+    public function test_the_reset_function_resets_to_default(): void
     {
         $this->testInstance->score->increment(11);
         $this->testInstance->score->increment(11);
@@ -245,7 +245,7 @@ class ScoreTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_score_gettest_returns_the_test()
+    public function test_score_gettest_returns_the_test(): void
     {
         $this->assertEquals($this->testInstance, $this->testInstance->score->getTest());
     }

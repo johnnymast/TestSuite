@@ -26,7 +26,7 @@ class TestSuite
      * Storage to contain the
      * tests.
      *
-     * @var \SplObjectStorage
+     * @var \SplObjectStorage|null
      */
     protected ?\SplObjectStorage $tests = null;
 
@@ -85,7 +85,7 @@ class TestSuite
      *
      * @return $this
      */
-    public function setContainer(ContainerInterface $container)
+    public function setContainer(ContainerInterface $container): self
     {
         $this->container = $container;
         return $this;
@@ -107,7 +107,7 @@ class TestSuite
      *
      * @return void
      */
-    public function reset()
+    public function reset(): void
     {
         $this->score = 0;
 
@@ -173,7 +173,7 @@ class TestSuite
      *
      * @return bool
      */
-    public function has(TestCase $test)
+    public function has(TestCase $test): bool
     {
         return $this->tests->contains($test);
     }
@@ -244,7 +244,7 @@ class TestSuite
      *
      * @return \SplObjectStorage
      */
-    public function getTests()
+    public function getTests(): \SplObjectStorage
     {
         return $this->tests;
     }

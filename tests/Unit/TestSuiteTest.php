@@ -19,10 +19,10 @@ namespace Redbox\Testsuite\Tests\Unit;
 
 use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
-use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\Tests\Assets\MockableContainer;
 use Redbox\Testsuite\Tests\Assets\MockableTestCase;
 use Redbox\Testsuite\TestSuite;
+use Redbox\Testsuite\TestCase;
 
 /**
  * Class TestSuiteTest
@@ -37,7 +37,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    function test_it_should_have_a_default_container()
+    function test_it_should_have_a_default_container(): void
     {
         $suite = new TestSuite();
         $container = $suite->getContainer();
@@ -46,12 +46,12 @@ class TestSuiteTest extends PHPUNIT_TestCase
     }
     
     /**
-     * Test if setting and then retreiving a container via getContainer
+     * Test if setting and then retrieving a container via getContainer
      * returns the same object.
      *
      * @return void
      */
-    function test_it_should_be_able_of_setting_custom_container()
+    function test_it_should_be_able_of_setting_custom_container(): void
     {
         $container = new MockableContainer();
         $suite = new TestSuite();
@@ -68,7 +68,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_attach_only_takes_tests()
+    public function test_attach_only_takes_tests(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $suite = new TestSuite();
@@ -81,7 +81,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_attach_returns_self()
+    public function test_attach_returns_self(): void
     {
         $suite = new TestSuite();
         $this->assertInstanceOf(TestSuite::class, $suite->attach(MockableTestCase::class));
@@ -92,7 +92,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_it_can_take_at_test()
+    public function test_it_can_take_at_test(): void
     {
         $test = $this->createMock(TestCase::class);
         $suite = new TestSuite();
@@ -106,7 +106,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_it_can_take_multiple_tests()
+    public function test_it_can_take_multiple_tests(): void
     {
         $test1 = $this->createMock(TestCase::class);
         $test2 = $this->createMock(TestCase::class);
@@ -122,7 +122,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_it_can_detach_a_test()
+    public function test_it_can_detach_a_test(): void
     {
         $test = $this->createMock(TestCase::class);
         $suite = new TestSuite();
@@ -139,7 +139,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_detach_returns_self()
+    public function test_detach_returns_self(): void
     {
         $suite = new TestSuite();
         $test = MockableTestCase::create();
@@ -153,7 +153,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    function test_it_should_return_all_tests_with_gettests()
+    function test_it_should_return_all_tests_with_gettests(): void
     {
         $test = $this->createMock(TestCase::class);
         
@@ -169,7 +169,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_it_can_run_once()
+    public function test_it_can_run_once(): void
     {
         $test = MockableTestCase::createWith(1);
         
@@ -187,7 +187,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_it_can_multiple_tests()
+    public function test_it_can_multiple_tests(): void
     {
         $test1 = MockableTestCase::createWith(1);
         $test2 = MockableTestCase::createWith(2);
@@ -206,7 +206,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    function test_attach_one_test_by_class_name()
+    function test_attach_one_test_by_class_name(): void
     {
         $suite = new TestSuite();
         
@@ -234,7 +234,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    function test_attach_multiple_tests_by_class_name()
+    function test_attach_multiple_tests_by_class_name(): void
     {
         $suite = new TestSuite();
         
@@ -261,7 +261,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_it_can_calculate_score_of_one_test()
+    public function test_it_can_calculate_score_of_one_test(): void
     {
         $test = MockableTestCase::createWith(4);
         
@@ -280,7 +280,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_it_can_calculate_score_of_multiple_tests()
+    public function test_it_can_calculate_score_of_multiple_tests(): void
     {
         $test1 = MockableTestCase::createWith(4);
         $test2 = MockableTestCase::createWith(5);
@@ -299,7 +299,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_getscore_returns_the_correct_value()
+    public function test_getscore_returns_the_correct_value(): void
     {
         $test1 = MockableTestCase::createWith();
         $test1->score->increment(4);
@@ -319,7 +319,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return voic
      */
-    public function test_run_should_pass_container_values()
+    public function test_run_should_pass_container_values(): void
     {
         $testClass = new class extends \Redbox\Testsuite\Tests\Assets\MockableTestCase {
             protected $unitTest = null;
@@ -367,7 +367,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_all_tests_get_a_unique_name()
+    public function test_all_tests_get_a_unique_name(): void
     {
         $test1 = MockableTestCase::create();
         $test2 = MockableTestCase::create();
@@ -384,7 +384,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_get_answers_has_the_answers()
+    public function test_get_answers_has_the_answers(): void
     {
         $test1 = MockableTestCase::create();
         $test2 = MockableTestCase::create();
@@ -450,7 +450,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_beforetest_is_being_called()
+    public function test_beforetest_is_being_called(): void
     {
         $test = MockableTestCase::create();
         
@@ -472,7 +472,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_aftertest_is_being_called()
+    public function test_aftertest_is_being_called(): void
     {
         $test = MockableTestCase::create();
         
@@ -495,7 +495,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    function test_average_should_return_the_correct_score_average()
+    function test_average_should_return_the_correct_score_average(): void
     {
         $test1 = MockableTestCase::createWith(3);
         $test2 = MockableTestCase::createWith(3);

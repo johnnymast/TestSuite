@@ -70,7 +70,7 @@ class Container implements ContainerInterface
      *
      * @return void
      */
-    public function set(string $key, $value)
+    public function set(string $key, $value): void
     {
         if (!is_null($key)) {
             $this->storage[$key] = $value;
@@ -84,7 +84,7 @@ class Container implements ContainerInterface
      *
      * @return void
      */
-    public function forget(string $key)
+    public function forget(string $key): void
     {
         if ($this->has($key)) {
             unset($this->storage[$key]);

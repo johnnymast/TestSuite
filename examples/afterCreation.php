@@ -51,7 +51,7 @@ class AfterCreationTest extends TestCase
      *
      * @var array
      */
-    protected $answers = [];
+    protected array $answers = [];
 
     /**
      * This function is overwritten from Redbox\Testsuite\TestCase
@@ -59,7 +59,7 @@ class AfterCreationTest extends TestCase
      *
      * @return void
      */
-    public function afterCreation()
+    public function afterCreation(): void
     {
         $this->answers = [true, true, false];
     }
@@ -71,7 +71,7 @@ class AfterCreationTest extends TestCase
      *
      * @return void
      */
-    protected function checkAnswer(bool $correct)
+    protected function checkAnswer(bool $correct): void
     {
         if ($correct) {
             $this->score->increment(1);
@@ -85,7 +85,7 @@ class AfterCreationTest extends TestCase
      *
      * @return void
      */
-    public function run(ContainerInterface $container)
+    public function run(ContainerInterface $container): void
     {
         foreach ($this->answers as $answer) {
             $this->checkAnswer($answer);

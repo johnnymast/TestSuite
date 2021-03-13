@@ -24,6 +24,7 @@ use Redbox\Testsuite\TestSuite;
 
 $suite = new TestSuite();
 $suite->attach(
+
     /**
      * Anonymous class
      */

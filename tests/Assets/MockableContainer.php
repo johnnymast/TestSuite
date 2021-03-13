@@ -59,7 +59,7 @@ class MockableContainer implements ContainerInterface
      *
      * @return void
      */
-    public function set(string $key, $value)
+    public function set(string $key, $value): void
     {
         // TODO: Implement set() method.
     }
@@ -71,7 +71,7 @@ class MockableContainer implements ContainerInterface
      *
      * @return void
      */
-    public function forget(string $key)
+    public function forget(string $key): void
     {
         // TODO: Implement forget() method.
     }

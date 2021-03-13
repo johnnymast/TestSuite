@@ -25,7 +25,6 @@ namespace Redbox\Testsuite\Interfaces;
  */
 interface ContainerInterface
 {
-    
     /**
      * Check to see if any information has been stored in the
      * container using the provided key.

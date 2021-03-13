@@ -54,7 +54,7 @@ class ScoreTest extends PHPUNIT_TestCase
         $this->testInstance = new class extends TestCase {
 
             /**
-             * Tell the TesCase what the
+             * Tell the TestCase what the
              * min reachable score is.
              *
              * @var int
@@ -62,7 +62,7 @@ class ScoreTest extends PHPUNIT_TestCase
             protected int $minscore = 0;
 
             /**
-             * Tell the TesCase what the
+             * Tell the TestCase what the
              * max reachable score is.
              *
              * @var int

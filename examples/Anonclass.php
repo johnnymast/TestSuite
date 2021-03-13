@@ -31,7 +31,7 @@ $suite->attach(
     new class extends TestCase {
 
         /**
-         * Tell the TesCase what the
+         * Tell the TestCase what the
          * min reachable score is.
          *
          * @var int
@@ -39,7 +39,7 @@ $suite->attach(
         protected int $minscore = 0;
 
         /**
-         * Tell the TesCase what the
+         * Tell the TestCase what the
          * max reachable score is.
          *
          * @var int

@@ -22,7 +22,6 @@ use Redbox\Testsuite\Interfaces\ContainerInterface;
 use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\TestSuite;
 
-
 class TestSuiteExtension extends  TestSuite {
 
     /**
@@ -81,7 +80,6 @@ class FirstTest extends TestCase {
 class SecondTest extends FirstTest {
 
 }
-
 
 $suite = new TestSuiteExtention();
 $suite->attach([FirstTest::class, SecondTest::class])

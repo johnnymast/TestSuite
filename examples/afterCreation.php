@@ -116,6 +116,5 @@ $suite->attach($test)
  * Total suite score 2
  */
 
-
 echo "Total suite score: " . $suite->getScore() . "\n";
 echo "Percentage complete: " . $test->score->percentage() . "%\n";

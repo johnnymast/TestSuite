@@ -27,7 +27,7 @@ use Redbox\Testsuite\TestSuite;
  */
 class MyFirstTestCase extends TestCase
 {
-    /**
+
     /**
      * Tell the TesCase what the
      * min reachable score is.

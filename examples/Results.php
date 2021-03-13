@@ -96,6 +96,7 @@ function formatOutput(array $answers): string
  */
 class RealTest extends TestCase
 {
+
     /**
      * Tell the TesCase what the
      * min reachable score is.

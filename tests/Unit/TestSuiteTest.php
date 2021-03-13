@@ -40,9 +40,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
     function test_it_should_have_a_default_container(): void
     {
         $suite = new TestSuite();
-        $container = $suite->getContainer();
-        
-        $this->assertInstanceOf(ContainerInterface::class, $container);
+        $this->assertInstanceOf(ContainerInterface::class, $suite->getContainer());
     }
     
     /**
@@ -57,9 +55,21 @@ class TestSuiteTest extends PHPUNIT_TestCase
         $suite = new TestSuite();
         
         $suite->setContainer($container);
-        
-        
-        $this->assertInstanceOf(MockableContainer::class, $container);
+
+        $this->assertInstanceOf(MockableContainer::class, $suite->getContainer());
+    }
+
+    /**
+     * Test setContainer() returns $this.
+     *
+     * @return void
+     */
+    public function test_setcontainer_returns_self(): void
+    {
+        $suite = new TestSuite();
+        $container = new MockableContainer();
+
+        $this->assertInstanceOf(TestSuite::class, $suite->setContainer($container));
     }
     
     /**
@@ -74,8 +84,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
         $suite = new TestSuite();
         $suite->attach('invalid_type');
     }
-    
-    
+
     /**
      * Test attach() returns $this.
      *
@@ -92,7 +101,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_it_can_take_at_test(): void
+    public function test_it_can_attach_a_single_test(): void
     {
         $test = $this->createMock(TestCase::class);
         $suite = new TestSuite();
@@ -102,11 +111,11 @@ class TestSuiteTest extends PHPUNIT_TestCase
     }
     
     /**
-     * Test it can attach a multiple tests.
+     * Test it can attach multiple tests.
      *
      * @return void
      */
-    public function test_it_can_take_multiple_tests(): void
+    public function test_it_can_attach_multiple_tests(): void
     {
         $test1 = $this->createMock(TestCase::class);
         $test2 = $this->createMock(TestCase::class);
@@ -153,7 +162,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    function test_it_should_return_all_tests_with_gettests(): void
+    function test_gettests_should_return_all_tests(): void
     {
         $test = $this->createMock(TestCase::class);
         
@@ -174,16 +183,16 @@ class TestSuiteTest extends PHPUNIT_TestCase
         $test = MockableTestCase::createWith(1);
         
         $suite = new TestSuite();
-        $suite->attach($test);
-        
-        $actual = $suite->run();
+        $actual = $suite->attach($test)
+            ->run();
+
         $expected = 1;
         $this->assertEquals($expected, $actual);
     }
     
     /**
      * Test that the run function will return 2 tests.
-     * for being run.
+     * for being having 2 tests ran.
      *
      * @return void
      */
@@ -229,8 +238,8 @@ class TestSuiteTest extends PHPUNIT_TestCase
     }
     
     /**
-     * Test one test can be attached by just using a classname. This
-     * test will automatically be loaded by the test suite.
+     * Test multiple tests can be attached by just using a classname. These
+     * tests will automatically be loaded by the test suite.
      *
      * @return void
      */
@@ -321,13 +330,13 @@ class TestSuiteTest extends PHPUNIT_TestCase
      */
     public function test_run_should_pass_container_values(): void
     {
-        $testClass = new class extends \Redbox\Testsuite\Tests\Assets\MockableTestCase {
+        $testClass = new class extends MockableTestCase {
             protected $unitTest = null;
             
             /**
              * Pass the TestSuiteTest to the fake test.
              *
-             * @param TestCase $unitTest The TestSuiteTest instance.
+             * @param PHPUNIT_TestCase $unitTest The TestSuiteTest instance.
              *
              * @return void
              */
@@ -384,7 +393,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_get_answers_has_the_answers(): void
+    public function test_get_answers_has_the_correct_motivations(): void
     {
         $test1 = MockableTestCase::create();
         $test2 = MockableTestCase::create();
@@ -475,8 +484,7 @@ class TestSuiteTest extends PHPUNIT_TestCase
     public function test_aftertest_is_being_called(): void
     {
         $test = MockableTestCase::create();
-        
-        
+
         $suite = $this->getMockBuilder(TestSuite::class)
             ->onlyMethods(['afterTest'])
             ->getMock();

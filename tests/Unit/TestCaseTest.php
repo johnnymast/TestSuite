@@ -39,7 +39,7 @@ class TestCaseTest extends PHPUNIT_TestCase
     /**
      * A test container.
      *
-     * @var \Redbox\Testsuite\Container
+     * @var Container
      */
     protected Container $testContainer;
     

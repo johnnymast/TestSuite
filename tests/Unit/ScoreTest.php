@@ -18,13 +18,12 @@
 namespace Redbox\Testsuite\Tests\Unit;
 
 use PHPUnit\Framework\TestCase as PHPUNIT_TestCase;
-
-use Redbox\Testsuite\Container;
 use Redbox\Testsuite\Interfaces\ContainerInterface;
+use Redbox\Testsuite\Container;
 use Redbox\Testsuite\TestCase;
 
 /**
- * Class TestTest
+ * Class ScoreTest
  *
  * @package Redbox\Testsuite\Tests\Unit
  */
@@ -40,7 +39,7 @@ class ScoreTest extends PHPUNIT_TestCase
     /**
      * A test container.
      *
-     * @var \Redbox\Testsuite\Container
+     * @var Container
      */
     protected Container $testContainer;
     
@@ -98,7 +97,7 @@ class ScoreTest extends PHPUNIT_TestCase
     }
     
     /**
-     * Test that the default score is set to the min score.
+     * Test that the default score is set to 0.
      *
      * @return void
      */
@@ -132,7 +131,7 @@ class ScoreTest extends PHPUNIT_TestCase
     }
     
     /**
-     * Test that, after a test run the score is stored correctly.
+     * Test that, after a test ran the score is stored correctly.
      *
      * @return void
      */
@@ -163,11 +162,11 @@ class ScoreTest extends PHPUNIT_TestCase
     }
     
     /**
-     * Test that the average score is communicated correctly.
+     * Test that the average score is calculated correctly.
      *
      * @return void
      */
-    public function test_average_can_be_correctly_calculated(): void
+    public function test_average_is_calculated_correctly(): void
     {
         $this->testInstance->score->increment(5);
         $this->testInstance->score->increment(5);
@@ -203,14 +202,14 @@ class ScoreTest extends PHPUNIT_TestCase
     }
     
     /**
-     * Test that score increments are calculated the rights way.
+     * Test that score increments are increased the rights way.
      *
      * @return void
      */
-    public function test_increments_is_calculated_correctly(): void
+    public function test_number_of_increments_is_increased_correctly(): void
     {
         $this->testInstance->score->increment(2);
-        $this->testInstance->score->increment(2);
+        $this->testInstance->score->increment(3);
         $this->assertEquals(2, $this->testInstance->score->getIncrements());
     }
     

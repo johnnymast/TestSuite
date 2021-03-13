@@ -65,22 +65,32 @@ class ContainerTest extends PHPUNIT_TestCase
      *
      * @return void
      */
-    public function test_get_should_return_false_for_nonexisting_key(): void
+    public function test_get_should_return_false_for_nonexistent_key(): void
     {
         $this->assertFalse($this->container->get('__NON_EXISTING_KEY'));
     }
     
     /**
-     * Test that the has function works correctly.
+     * Test that the has function returns true if the key is present.
      *
      * @return void
      */
-    public function test_has_works_correctly(): void
+    public function test_has_returns_true_if_key_is_present(): void
     {
         $this->container->set('__SECOND__', 'some value');
         $this->assertTrue($this->container->has('__SECOND__'));
     }
-    
+
+    /**
+     * Test that the has function returns false if the key is not present.
+     *
+     * @return void
+     */
+    public function test_has_returns_false_if_key_is_not_present(): void
+    {
+        $this->assertFalse($this->container->has('__SECOND__'));
+    }
+
     /**
      * Test the forget function works correctly.
      *

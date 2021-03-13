@@ -3,8 +3,9 @@
 /**
  * ContainerInterface.php
  *
- * Create a interface for containers. This will voice compatibility
- * with the core of Redbox TestSuite.
+ * Create a interface for containers. This will make sure
+ * that Containers are compatible with the core of
+ * Redbox TestSuite.
  *
  * PHP version 7.4
  *

@@ -3,7 +3,7 @@
 /**
  * AfterCreation.php
  *
- * This file demonstrate is almost identical to Single.php and
+ * This file demonstrate is almost identical to SingleTestCase.php and
  * will demonstrates the usage of the afterCreation() function
  * to prepare data to be used inside the test.
  *

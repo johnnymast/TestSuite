@@ -3,8 +3,7 @@
 /**
  * TestSuite.php
  *
- * This middleware will intercept traffic from visitors to
- * your website.
+ * This Testsuite allows you to run tests.
  *
  * PHP version 7.4
  *
@@ -19,6 +18,7 @@
 namespace Redbox\Testsuite;
 
 use Redbox\Testsuite\Interfaces\ContainerInterface;
+use SplObjectStorage;
 
 class TestSuite
 {
@@ -26,9 +26,9 @@ class TestSuite
      * Storage to contain the
      * tests.
      *
-     * @var \SplObjectStorage|null
+     * @var SplObjectStorage|null
      */
-    protected ?\SplObjectStorage $tests = null;
+    protected ?SplObjectStorage $tests = null;
 
     /**
      * Storage container to contain information
@@ -50,7 +50,7 @@ class TestSuite
      */
     public function __construct()
     {
-        $this->tests = new \SplObjectStorage;
+        $this->tests = new SplObjectStorage;
 
         $this->setContainer(new Container());
     }
@@ -76,7 +76,6 @@ class TestSuite
     {
         // Overwrite at will
     }
-
 
     /**
      * Set he storage container for the test suite.
@@ -140,7 +139,7 @@ class TestSuite
             }
 
             if (is_subclass_of($test, TestCase::class) === false) {
-                throw new \InvalidArgumentException('Test does not extend Test abstract class.');
+                throw new \InvalidArgumentException('This Test does not extend the TestCase abstract class.');
             }
 
             $test->setName(get_class($test) . '_' . $this->tests->count());
@@ -181,9 +180,9 @@ class TestSuite
     /**
      * Run the tests
      *
-     * @param bool $reset Should the tests reset before running
+     * @param bool $reset Will the tests reset before running.
      *
-     * @return int The number of tests that ran.
+     * @return int
      */
     public function run($reset = true): int
     {
@@ -192,7 +191,7 @@ class TestSuite
         /**
          * Reset the test results
          */
-        if ($reset) {
+        if ($reset === true) {
             $this->reset();
         }
 
@@ -219,8 +218,8 @@ class TestSuite
      */
     public function getAnswers(): array
     {
+        $info = [];
         if ($this->tests->count() > 0) {
-            $info = [];
             foreach ($this->tests as $test) {
                 $info[$test->getName()] = $test->score->getScoreInfo();
             }
@@ -242,9 +241,9 @@ class TestSuite
     /**
      * Return all tests.
      *
-     * @return \SplObjectStorage
+     * @return SplObjectStorage
      */
-    public function getTests(): \SplObjectStorage
+    public function getTests(): SplObjectStorage
     {
         return $this->tests;
     }

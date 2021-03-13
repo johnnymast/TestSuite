@@ -40,7 +40,7 @@ class MockableContainer implements ContainerInterface
     }
     
     /**
-     * Return a value from the container with a key.
+     * Return a value from the container with the provided key.
      *
      * @param string $key The identification key.
      *

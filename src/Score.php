@@ -130,7 +130,7 @@ class Score
     }
     
     /**
-     * Return information about the scoreszz.
+     * Return information about the scores.
      *
      * @return array
      */

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TestSuiteExtention.php
+ * TestSuiteExtension.php
  *
  * This file demonstrate how you can extend the TestSuite
  * class to add your own functionality to it.
@@ -23,7 +23,7 @@ use Redbox\Testsuite\TestCase;
 use Redbox\Testsuite\TestSuite;
 
 
-class TestSuiteExtention extends  TestSuite {
+class TestSuiteExtension extends  TestSuite {
 
     /**
      * This function will be called before every

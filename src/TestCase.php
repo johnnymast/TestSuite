@@ -43,7 +43,7 @@ abstract class TestCase
     /**
      * Test constructor.
      *
-     * Please not tests cant overwrite the function.
+     * Note: Tests cant overwrite the function.
      */
     final function __construct()
     {
@@ -62,7 +62,7 @@ abstract class TestCase
 
     /**
      * This function will be called from within the constructor.
-     * This allows you to setup some data from within the
+     * This allows you to setup some data from within your test.
      *
      * @return void
      */

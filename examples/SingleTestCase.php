@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Single.php
+ * SingleTestCase.php
  *
  * This file demonstrate how to add a test to the test suite
  * and run the test.
